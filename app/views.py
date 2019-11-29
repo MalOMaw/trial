@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, abort
 from jinja2 import Markup
 
 from app import app
@@ -44,10 +44,20 @@ content = Markup('''<address>email@server.com</address>
 name = "Article Name"
 blog = "Blog Name"
 
-@app.route('/article')
+@app.route('/article_dummy')
 def article():
     return render_template("article.html", articleName=name, blogName=blog, content=content)
 
 @app.route('/')
 def hello_world():
     return 'Dummy'
+
+@app.route('/article/<int:article_id>')
+def show_article(article_id):
+    from jinja2 import Markup
+    from .models import Article
+    article = Article.query.filter(Article.id == article_id).first()
+    if article:
+        return render_template("article.html", articleName=article.name, blogName='Dummy Var', content=Markup(article.content))
+    else:
+        abort(404)
