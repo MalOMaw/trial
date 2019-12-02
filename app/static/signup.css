@@ -28,7 +28,7 @@ div#formbody {
     margin:auto;
 }
 
-input[type="password"], input[type="text"] {
+div#formbody input[type="password"], input[type="text"] {
     border-radius: 5px;
     border: lightgrey solid 1px;
     min-width: 250px;
@@ -37,7 +37,7 @@ input[type="password"], input[type="text"] {
     margin-bottom: 20px;
 }
 
-input[type="submit"]{
+div#formbody input[type="submit"]{
     display: inline-block;
     width: 40%;
     background: rgb(0,0,0);

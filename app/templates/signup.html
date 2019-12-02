@@ -24,12 +24,14 @@
     <span id="signin-span">Sign up to Blog</span>
     <form action="" method="post" novalidate>
         <div id="formbody">
-            <label>E-Mail</label>
-            <input type="text" name="username">
-            <label>Username</label>
-            <input type="text" name="username">
-            <label>Password</label>
-            <input maxlength="500" type="password" name="password">
+            {{ form.email.label }}
+            {{ form.email }}
+            {{ form.username.label }}
+            {{ form.username }}
+            {{ form.password.label }}
+            {{ form.password }}
+            {{ form.confirm.label }}
+            {{ form.confirm }}
             <input type="submit" value="Sign In">
             <a href="restore">Forgot password?</a>
         </div>
