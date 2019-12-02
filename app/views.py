@@ -62,10 +62,22 @@ def show_article(article_id):
     else:
         abort(404)
 
+from .forms import SignUpForm
 @app.route('/signin')
 def signIn():
     return render_template("signin.html")
 
-@app.route('/signup')
+from flask import request, flash,redirect
+from .database import db_session
+from .models import User
+@app.route('/signup', methods=['GET', 'POST'])
 def signUp():
-    return render_template("signup.html")
+    import hashlib
+    form = SignUpForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User(form.username.data, form.email.data, hashlib.sha256(form.password.data.encode()).hexdigest())
+        db_session.add(user)
+        db_session.commit()
+        flash("User record has been created!")
+        return redirect("/")
+    return render_template("signup.html", form=form)
