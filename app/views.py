@@ -61,3 +61,11 @@ def show_article(article_id):
         return render_template("article.html", articleName=article.name, blogName='Dummy Var', content=Markup(article.content))
     else:
         abort(404)
+
+@app.route('/signin')
+def signIn():
+    return render_template("signin.html")
+
+@app.route('/signup')
+def signUp():
+    return render_template("signup.html")
