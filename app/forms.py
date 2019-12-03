@@ -11,7 +11,7 @@ class SignUpForm(Form):
     confirm = PasswordField('Repeat Password')
 
 
-class SignUpForm(Form):
+class SignInForm(Form):
     username = StringField('Username', [validators.Length(min=4, max=25)])
     password = PasswordField('Password', [
         validators.DataRequired()
