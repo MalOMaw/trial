@@ -1,4 +1,4 @@
-from flask import render_template, abort, request, flash, redirect
+from flask import render_template, abort, request, flash, redirect, session
 from .database import db_session
 
 from app import app
@@ -11,7 +11,7 @@ def article():
 
 @app.route('/')
 def hello_world():
-    return 'Dummy'
+    return render_template("index.html")
 
 
 @app.route('/article/<int:article_id>')
@@ -29,7 +29,16 @@ def show_article(article_id):
 
 @app.route('/signin')
 def signIn():
-    return render_template("signin.html")
+    from .models import User
+    from .forms import SignInForm
+    import hashlib
+    form = SignInForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User.query.filter(User.username == form.username.data)
+        if user and user.password == hashlib.sha256(form.password.data.encode()).hexdigest():
+            session["username"] = form.username.data
+            return redirect("/")
+    return render_template("signin.html", form=form)
 
 
 @app.route('/signup', methods=['GET', 'POST'])
