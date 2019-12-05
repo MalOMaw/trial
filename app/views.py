@@ -27,14 +27,14 @@ def show_article(article_id):
         abort(404)
 
 
-@app.route('/signin')
+@app.route('/signin', methods=['GET', 'POST'])
 def signIn():
     from .models import User
     from .forms import SignInForm
     import hashlib
     form = SignInForm(request.form)
     if request.method == 'POST' and form.validate():
-        user = User.query.filter(User.username == form.username.data)
+        user = User.query.filter(User.username == form.username.data).first()
         if user and user.password == hashlib.sha256(form.password.data.encode()).hexdigest():
             session["username"] = form.username.data
             return redirect("/")
