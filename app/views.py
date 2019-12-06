@@ -1,16 +1,11 @@
-from flask import render_template, abort, request, flash, redirect, session
+from flask import render_template, abort, request, flash, redirect, session, url_for
 from .database import db_session
 
 from app import app
 
 
-@app.route('/article_dummy')
-def article():
-    return render_template("article.html", articleName=name, blogName=blog, content=content)
-
-
 @app.route('/')
-def hello_world():
+def index():
     return render_template("index.html")
 
 
@@ -54,3 +49,9 @@ def signUp():
         flash("User record has been created!")
         return redirect("/")
     return render_template("signup.html", form=form)
+
+
+@app.route('/signout', methods=['GET', 'POST'])
+def signOut():
+    del session["username"]
+    return redirect(url_for('index'))
