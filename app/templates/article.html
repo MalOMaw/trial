@@ -5,17 +5,27 @@
     <title>{{blogName}} - {{articleName}}</title>
     <link rel="stylesheet" href={{ url_for('static', filename='reset.css') }} type="text/css">
     <link rel="stylesheet" href={{ url_for('static', filename='article.css') }} type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
+        <img src={{ url_for('static', filename='blog.png') }} id="logo">
         <nav id="links">
-            <ul class="navbar">
-                <span id="blogcaption">Someone's Blog</span>
-                <li>Home</li>
-                <li>Sign Up</li>
-                <li>Articles</li>
-            </ul>
+            <a href={{ url_for('index') }}>Home</a>
+            {% if session["username"] %}
+                <a href={{ url_for('signOut') }}>Sign Out</a>
+            {% endif %}
+            {% if not session["username"] %}
+                <a href={{ url_for('signIn') }}>Sign In</a>
+                <a href={{ url_for('signUp') }}>Sign Up</a>
+            {% endif %}
         </nav>
+        <div id="userbar">
+            <span id="username">{{ session["username"] or "Anonymous" }}</span>
+            <img src={{ url_for('static', filename='skeleton.jpg') }} id="avatar">
+        </div>
     </header>
     <article>
         {{ content }}

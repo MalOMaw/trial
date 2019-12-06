@@ -13,12 +13,17 @@
     <header>
         <img src={{ url_for('static', filename='blog.png') }} id="logo">
         <nav id="links">
-            <a>Home</a>
-            <a>Sign Up</a>
-            <a>Articles</a>
+            <a href={{ url_for('index') }}>Home</a>
+            {% if session["username"] %}
+                <a href={{ url_for('signOut') }}>Sign Out</a>
+            {% endif %}
+            {% if not session["username"] %}
+                <a href={{ url_for('signIn') }}>Sign In</a>
+                <a href={{ url_for('signUp') }}>Sign Up</a>
+            {% endif %}
         </nav>
         <div id="userbar">
-            <span id="username">f8upd8</span>
+            <span id="username">{{ session["username"] or "Anonymous" }}</span>
             <img src={{ url_for('static', filename='skeleton.jpg') }} id="avatar">
         </div>
     </header>

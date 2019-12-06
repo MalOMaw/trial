@@ -11,16 +11,23 @@
 </head>
 <body>
     <header>
+        <img src={{ url_for('static', filename='blog.png') }} id="logo">
         <nav id="links">
-            <ul class="navbar">
-                <span id="blogcaption">Someone's Blog</span>
-                <li>Home</li>
-                <li>Sign Up</li>
-                <li>Articles</li>
-            </ul>
+            <a href={{ url_for('index') }}>Home</a>
+            {% if session["username"] %}
+                <a href={{ url_for('signOut') }}>Sign Out</a>
+            {% endif %}
+            {% if not session["username"] %}
+                <a href={{ url_for('signIn') }}>Sign In</a>
+                <a href={{ url_for('signUp') }}>Sign Up</a>
+            {% endif %}
         </nav>
+        <div id="userbar">
+            <span id="username">{{ session["username"] or "Anonymous" }}</span>
+            <img src={{ url_for('static', filename='skeleton.jpg') }} id="avatar">
+        </div>
     </header>
-    <img id="logo" src={{ url_for('static', filename='blog.png') }} width="50px">
+    <img id="logo2" src={{ url_for('static', filename='blog.png') }} width="50px">
     <span id="signin-span">Sign up to Blog</span>
     <form action="" method="post" novalidate>
         <div id="formbody">
