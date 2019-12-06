@@ -1,3 +1,64 @@
+div#userbar {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    justify-content: flex-end;
+}
+
+span#username {
+    color: white;
+    font-weight: bolder;
+    padding-top: 15px;
+}
+
+img#avatar {
+    width: 50px;
+    clip-path: circle(20px at center);
+}
+
+header {
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+}
+
+img#logo {
+    margin-left: 10px;
+    width: 30px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: white;
+}
+
+nav#links a {
+    text-align: center;
+    font-size: 15px;
+    margin-left: 20px;
+    background-color: black;
+    color: white;
+    font-family: 'Comfortaa', cursive;
+    font-weight: bolder;
+    width: fit-content;
+    vertical-align: middle;
+}
+
+a#blogcaption {
+    flex: 0.5;
+    font-size: 30px;
+    color: white;
+    text-align: left;
+    padding-left: 20px;
+}
+
+nav#links {
+    display: flex;
+    vertical-align: middle;
+    height: fit-content;
+    flex: 2;
+}
+
 body {
     font-family: 'IBM Plex Serif', serif;
     width: 100%;
@@ -17,24 +78,7 @@ article {
     box-shadow: 0 0 10px lightgrey;
 }
 
-ul.navbar li {
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 25px;
-    margin: 4px 4px;
-    padding: 5px 5px;
-    background-color: black;
-    color: grey;
-    font-family: 'Comfortaa', cursive;
-}
 
-ul.navbar {
-    height: fit-content;
-    width: 100%;
-    position: center;
-    background-color: black;
-}
 
 h1, h2, h3 {
     font-family: 'Raleway', sans-serif;
