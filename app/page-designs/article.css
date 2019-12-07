@@ -1,3 +1,44 @@
+img#emojiicon {
+    display: inline-block;
+    width: 30px;
+}
+
+input[type="submit"] {
+    font-family: 'IBM Plex Serif', serif;
+    display: inline-block;
+    width: fit-content;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(2,255,129,1) 0%, rgba(29,199,62,1) 100%);
+    border: darkseagreen;
+    font-size: 20px;
+    margin-bottom: 35px;
+    padding: 4px;
+    padding-right: 30px;
+    padding-left: 30px;
+    text-align: center;
+    vertical-align: center;
+}
+
+textarea.submit-comment {
+    display: block;
+    font-size: 15px;
+    font-weight: lighter;
+    font-family: 'IBM Plex Serif', serif;
+    overflow: auto;
+    height: fit-content;
+    min-height: 12em;
+    resize: none;
+    width: 100%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    background-color: white;
+    box-shadow: 0 0 10px lightgrey;
+    border-radius: 5px;
+    position: relative;
+    left: -2px;
+}
+
 span#coments-section-caption {
     font-family: 'Raleway', sans-serif;
     font-size: 50px;
@@ -53,6 +94,7 @@ div.comment {
     border-top: lightgrey solid 0.5px;
     margin-right: auto;
     margin-left: auto;
+    line-height: 1.5rem;
 }
 
 div.admin {
