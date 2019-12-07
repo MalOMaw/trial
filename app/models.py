@@ -1,11 +1,15 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy.orm import relationship
 from app.database import Base
+
 
 class Article(Base):
     __tablename__ = 'Articles'
     id = Column(Integer, primary_key=True)
     name = Column(String(50), unique=True)
     content = Column(String(), unique=True)
+    comments = relationship('Comment')
+
 
     def __init__(self, name=None, content=""):
         self.name = name
@@ -29,3 +33,20 @@ class User(Base):
 
     def __repr__(self):
         return '<User %r>' % self.username
+
+
+class Comment(Base):
+    __tablename__ = 'Comments'
+    id = Column(Integer, primary_key=True)
+    content = Column(String(1024), unique=False)
+    article_id = Column(Integer, ForeignKey('Articles.id'))
+    user_id = Column(Integer, ForeignKey('Users.id'))
+    datetime = Column(DateTime())
+
+    def __init__(self, datetime, content, user_id):
+        self.datetime = datetime
+        self.content = content
+        self.user_id = user_id
+
+    def __repr__(self):
+        return '<Comment %r>' % self.id
