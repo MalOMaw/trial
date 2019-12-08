@@ -1,4 +1,4 @@
-from wtforms import Form, StringField, PasswordField, validators
+from wtforms import Form, StringField, PasswordField, validators, IntegerField
 
 
 class SignUpForm(Form):
@@ -16,3 +16,7 @@ class SignInForm(Form):
     password = PasswordField('Password', [
         validators.DataRequired()
     ])
+
+class PostSubmitForm(Form):
+    content = StringField("Post", [validators.length(min=3, max=1024)])
+    article_id = IntegerField("Article ID")
