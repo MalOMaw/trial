@@ -55,3 +55,24 @@ def signUp():
 def signOut():
     del session["username"]
     return redirect(url_for('index'))
+
+@app.route('/post/submit', methods=['GET', 'POST'])
+def submit_post():
+    from .models import User, Comment, Article
+    from .forms import PostSubmitForm
+    import datetime
+    from .database import db_session
+    form = PostSubmitForm(request.form)
+    if request.method == 'POST' and form.validate():
+        if not session["username"]:
+            return redirect("/", code=404)
+        user = User.query.filter(User.username == session["username"]).first()
+        article_id = form.article_id.data
+        article = Article.query.filter(Article.id == article_id).first()
+        if not user or not article:
+            return redirect("/", code=404)
+        comment = Comment(datetime.datetime.now(), form.content.data, user.id)
+        article.comments.append(comment)
+        db_session.commit()
+        return redirect("/article/{0}".format(article_id))
+    return redirect("/", code=404)
