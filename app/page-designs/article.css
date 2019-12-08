@@ -250,6 +250,7 @@ footer {
     height: fit-content;
     background-color: black;
     color: grey;
+    display: flex;
 }
 
 footer div {
@@ -259,12 +260,12 @@ footer div {
 }
 
 div#footer-authorship {
-    position: absolute;
-    right: 0px;
+    text-align: end;
+    flex:1;
 }
 
 div#footer-about {
-    max-width: 50%;
+    flex:1;
 }
 
 span#blogcaption {

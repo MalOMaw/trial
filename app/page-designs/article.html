@@ -114,14 +114,16 @@ Mel laoreet iracundia no, mei ut alia everti erroribus. Dicit eligendi te pri, n
             <span class="postrating">22.0</span>
         </div>
 
-        <textarea class="submit-comment" placeholder="Type your comment here..." maxlength="1024"></textarea>
-        <input type="submit" value="Post">
+        <form action="/post/submit" method="post">
+            <textarea class="submit-comment" placeholder="Type your comment here..." maxlength="1024"></textarea>
+            <input type="submit" value="Post">
+        </form>
     </section>
     <footer>
         <div>
             Some Meaningful Text About the Project and people behind it
         </div>
-        <div>
+        <div id ='footer-authorship'>
             2019-2019 Author (c)
         </div>
     </footer>

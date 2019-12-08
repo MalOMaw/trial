@@ -146,6 +146,7 @@ footer {
     height: fit-content;
     background-color: black;
     color: grey;
+    display: flex;
 }
 
 footer div {
@@ -155,8 +156,7 @@ footer div {
 }
 
 div#footer-authorship {
-    position: absolute;
-    right: 0px;
+    float: right;
 }
 
 div#footer-about {
