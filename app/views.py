@@ -12,12 +12,24 @@ def index():
 @app.route('/article/<int:article_id>')
 def show_article(article_id):
     from jinja2 import Markup
-    from .models import Article
+    from .models import Article, User
+    from .forms import PostSubmitForm
     article = Article.query.filter(Article.id == article_id).first()
+    form = PostSubmitForm()
+    form.article_id = article_id
     if article:
+        comments = []
+        for comment in article.comments:
+            username = User.query.filter(User.id == comment.user_id).first().username
+            content = comment.content
+            datetime = comment.datetime
+            comments.append({'username':username, 'content':content, 'datetime':datetime})
         return render_template("article.html", articleName=article.name,
                                blogName='Dummy Var',
-                               content=Markup(article.content))
+                               content=Markup(article.content),
+                               form=form,
+                               comments=comments,
+                               comments_number = len(comments))
     else:
         abort(404)
 
@@ -56,7 +68,7 @@ def signOut():
     del session["username"]
     return redirect(url_for('index'))
 
-@app.route('/post/submit', methods=['GET', 'POST'])
+@app.route('/comment', methods=['GET', 'POST'])
 def submit_post():
     from .models import User, Comment, Article
     from .forms import PostSubmitForm
@@ -65,14 +77,17 @@ def submit_post():
     form = PostSubmitForm(request.form)
     if request.method == 'POST' and form.validate():
         if not session["username"]:
+            print('no user session')
             return redirect("/", code=404)
         user = User.query.filter(User.username == session["username"]).first()
         article_id = form.article_id.data
         article = Article.query.filter(Article.id == article_id).first()
         if not user or not article:
+            print("user is", user)
+            print("article_id is", article_id)
             return redirect("/", code=404)
         comment = Comment(datetime.datetime.now(), form.content.data, user.id)
         article.comments.append(comment)
         db_session.commit()
-        return redirect("/article/{0}".format(article_id))
+        return redirect("/article/{0}#comments".format(article_id))
     return redirect("/", code=404)
