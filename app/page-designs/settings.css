@@ -1,0 +1,334 @@
+img#emojiicon {
+    display: inline-block;
+    width: 30px;
+}
+
+div#settings {
+    border-radius: 5px;
+    margin: auto;
+    width: 50%;
+    background-color: white;
+    border: lightgrey solid 1px;
+    padding: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px lightgrey;
+    display:block;
+}
+
+span#settings-caption {
+    font-size: 30px;
+    border-bottom: grey 1px solid;
+    margin-bottom: 50px;
+    display: block;
+}
+
+input[type="submit"]{
+    display: block;
+    width: fit-content;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgb(2, 198, 106) 0%, rgb(19, 185, 58) 100%);
+    border: darkseagreen;
+    height: 1.6em;
+    border-radius: 3px;
+    color: white;
+    font-weight: bolder;
+}
+
+span.field-caption {
+    font-size: 16px;
+    font-weight: lighter;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.editicon {
+    position: relative;
+    left: 27px;
+    bottom: 2px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 4px;
+    border: black 2px solid;
+}
+
+input[type="password"], input[type="text"], input[type="email"], input[type="file"] {
+    border-radius: 5px;
+    border: lightgrey solid 1px;
+    min-width: 250px;
+    padding: 10px;
+    display: block;
+    margin-bottom: 20px;
+    font-weight: bolder;
+}
+
+form input[type="file"]::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+form input[type="file"] {
+    min-width: 0px;
+    width: 10px;
+    height: 10px;
+    z-index: 0;
+    background-color: white;
+    border: none;
+    content: "edit";
+    display: inline-block;
+    opacity: 0;
+}
+
+.input-container {
+    position: relative;
+    bottom: 40px;
+    right: 20px;
+}
+
+
+form {
+    border-radius: 5px;
+    width: fit-content;
+    display: block;
+    background-color: white;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+form#password-or-email {
+    padding: 20px;
+    border: #d30001 solid 1px;
+    font-weight: bold;
+}
+
+form#password-or-email input[type="submit"] {
+    background: linear-gradient(180deg, rgb(244, 37, 32) 0%, rgb(250, 80, 111) 100%);
+    font-weight: bold;
+}
+
+form#avatar-settings-form input[type=submit] {
+    position: relative;
+    bottom: 35px;
+}
+
+span#coments-section-caption {
+    font-family: 'Raleway', sans-serif;
+    font-size: 50px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+div.userbar {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    justify-content: flex-end;
+}
+
+.avatar {
+    display: inline-block;
+}
+
+#avatar {
+    border-radius: 5px;
+}
+
+button.dropdown-menu {
+    padding: 0;
+    background-color: black;
+    position:relative;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: #ffffff transparent transparent transparent;
+    margin-right: 20px;
+    display: inline-block;
+}
+
+.dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background-color: white;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a{
+    color: black;
+    padding: 6px 16px;
+    margin-bottom: 6px;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.dropdown-content a:hover  {background-color: #39dda1;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+img#navavatar {
+    margin-right: 5px;
+    width: 20px;
+    border-radius: 5px;
+}
+
+header {
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+}
+
+img#logo {
+    margin-left: 10px;
+    width: 30px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: white;
+}
+
+nav#links a {
+    text-align: center;
+    font-size: 15px;
+    margin-left: 20px;
+    background-color: black;
+    color: white;
+    font-family: 'Comfortaa', cursive;
+    font-weight: bolder;
+    width: fit-content;
+    vertical-align: middle;
+}
+
+a#blogcaption {
+    flex: 0.5;
+    font-size: 30px;
+    color: white;
+    text-align: left;
+    padding-left: 20px;
+}
+
+nav#links {
+    display: flex;
+    vertical-align: middle;
+    height: fit-content;
+    flex: 2;
+}
+
+article {
+    border-radius: 5px;
+    margin: auto;
+    width: 80%;
+    display: block;
+    background-color: white;
+    border: lightgrey solid 1px;
+    padding: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px lightgrey;
+}
+
+h1, h2, h3 {
+    font-family: 'Raleway', sans-serif;
+    border-bottom: lightgrey solid 1px;
+    width: fit-content;
+}
+
+h1 {
+    font-weight: bolder;
+    font-size: 50px;
+    margin-top: 20px;
+    margin-bottom: 45px;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+h3 {
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+address {
+    font-style: italic;
+}
+
+figure img {
+    max-width: 50vw;
+    max-height: 50vh;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+figure {
+    width: 100%;
+    height: 100%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+figcaption {
+    font-style: italic;
+    font-size: 20px;
+    margin: auto;
+    margin-top: 20px;
+    text-align: center;
+    width: fit-content;
+    border-bottom: lightgrey solid 1px;
+}
+
+p {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    line-height: 1.5em;
+}
+
+footer {
+    height: fit-content;
+    background-color: black;
+    color: grey;
+    display: flex;
+}
+
+footer div {
+    display: inline-block;
+    margin: 20px;
+    margin-left: 50px;
+}
+
+div#footer-authorship {
+    text-align: end;
+    flex:1;
+}
+
+div#footer-about {
+    flex:1;
+}
+
+span#blogcaption {
+    color:white;
+    margin: auto;
+    font-size: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
