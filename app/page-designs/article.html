@@ -17,9 +17,16 @@
             <a>Sign Up</a>
             <a>Articles</a>
         </nav>
-        <div id="userbar">
-            <span id="username">f8upd8</span>
-            <img src="skeleton.jpg" id="avatar">
+        <div class="userbar">
+            <div class="dropdown">
+                <div class="avatar"><img src="skeleton.jpg" id="avatar"></div>
+                <button class="dropdown-menu"></button>
+                <div class="dropdown-content">
+                    <a href="#">Settings</a>
+                    <a href="#">Sign Out</a>
+                    <a href="#">Help</a>
+                </div>
+            </div>
         </div>
     </header>
     <article>
@@ -63,7 +70,7 @@
     </article>
     <section id="comments">
         <span id="coments-section-caption">
-            Comments (4)
+            Comments ({{4}})
         </span>
 
         <div class="comment">

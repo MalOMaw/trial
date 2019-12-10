@@ -110,22 +110,67 @@ body {
     background-image: url("triangle-mosaic.png");
 }
 
-div#userbar {
+div.userbar {
     display: flex;
     align-items: center;
     width: fit-content;
     justify-content: flex-end;
 }
 
-span#username {
-    color: white;
-    font-weight: bolder;
-    padding-top: 15px;
+.avatar {
+    display: inline-block;
 }
 
+button.dropdown-menu {
+    padding: 0;
+    background-color: black;
+    position:relative;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: #ffffff transparent transparent transparent;
+    margin-right: 20px;
+    display: inline-block;
+}
+
+.dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background-color: white;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a{
+    color: black;
+    padding: 6px 16px;
+    margin-bottom: 6px;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.dropdown-content a:hover  {background-color: #39dda1;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
 img#avatar {
-    width: 50px;
-    clip-path: circle(20px at center);
+    margin-right: 5px;
+    width: 20px;
+    border-radius: 5px;
 }
 
 header {
