@@ -30,6 +30,28 @@
     <article>
         {{ content }}
     </article>
+    <section id="comments">
+        <span id="coments-section-caption">
+            Comments ({{ comments_number }})
+        </span>
+
+        {% for comment in comments %}
+            <div class = "comment">
+                <span class="comment-content">{{ comment["content"] }}</span>
+                <img src="skeleton.jpg" class="posteravatar">
+                <span class="postedby">{{ comment["username"] }}</span>
+                <span class="postdate">{{ comment["datetime"].strftime("%b %d %Y %H:%M") }}</span>
+                <span class="postrating">0</span>
+            </div>
+        {% endfor %}
+        {% if session["username"] %}
+            <form action="/comment" method="post">
+                {{ form.content }}
+                <input type="hidden" value="{{ form.article_id }}" name="article_id">
+                <input type="submit" value="Comment">
+            </form>
+        {% endif %}
+    </section>
     <footer>
         <div id="footer-about">
             Some Meaningful Text About the Project and people behind it
