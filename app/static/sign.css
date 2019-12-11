@@ -72,3 +72,10 @@ form {
     margin-bottom: 20px;
     box-shadow: 0 0 10px lightgrey;
 }
+
+img#logo {
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: block;
+}
