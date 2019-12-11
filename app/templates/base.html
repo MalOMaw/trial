@@ -21,8 +21,7 @@
                 <div class="dropdown">
                     {% if session["username"] %}
                          <div class="navavatar">
-                             <img src={{ url_for('static', filename='{0}.jpg'.format(session["username"])) or
-                             url_for('static', filename='default_avatar.png') }}>
+                             <img src={{ url_for('static', filename='{0}.jpg'.format(session['username'])) }}>
                          </div>
                     {% endif %}
                     {% if not session["username"] %}
@@ -54,5 +53,6 @@
             2019-2019 Author (c)
         </div>
     </footer>
+    <script src={{ url_for('static', filename='navbar.js') }}></script>
 </body>
 </html>
