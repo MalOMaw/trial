@@ -8,14 +8,12 @@ header {
 
 div#settings {
     border-radius: 5px;
-    margin: auto;
     min-width: fit-content;
     width: 30%;
     background-color: white;
     border: lightgrey solid 1px;
     padding: 30px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px auto;
     box-shadow: 0 0 10px lightgrey;
     display:block;
 }
@@ -87,9 +85,7 @@ form {
     width: fit-content;
     display: block;
     background-color: white;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px auto;
 }
 
 form#password-or-email {
@@ -152,7 +148,7 @@ button.dropdown-menu {
     top: 15px;
     background-color: white;
     min-width: 100px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
@@ -206,8 +202,7 @@ footer {
 
 footer div {
     display: inline-block;
-    margin: 20px;
-    margin-left: 50px;
+    margin: 20px 20px 20px 50px;
 }
 
 div#footer-authorship {
