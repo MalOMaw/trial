@@ -1,32 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Someone's Blog - Article Name</title>
-    <link rel="stylesheet" href={{ url_for('static', filename='reset.css') }} type="text/css">
-    <link rel="stylesheet" href={{ url_for('static', filename="signin.css") }} type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <img src={{ url_for('static', filename='blog.png') }} id="logo">
-        <nav id="links">
-            <a href={{ url_for('index') }}>Home</a>
-            {% if session["username"] %}
-                <a href={{ url_for('signOut') }}>Sign Out</a>
-            {% endif %}
-            {% if not session["username"] %}
-                <a href={{ url_for('signIn') }}>Sign In</a>
-                <a href={{ url_for('signUp') }}>Sign Up</a>
-            {% endif %}
-        </nav>
-        <div id="userbar">
-            <span id="username">{{ session["username"] or "Anonymous" }}</span>
-            <img src={{ url_for('static', filename='skeleton.jpg') }} id="avatar">
-        </div>
-    </header>
+{% extends "base.html" %}
+{% block head %}
+    <link rel="stylesheet" href={{ url_for('static', filename='signin.css') }} type="text/css">
+{% endblock %}
+{% block title %}Login{% endblock %}
+{% block content %}
     <img id="logo2" src={{ url_for('static', filename='blog.png') }} width="50px">
     <span id="signin-span">Sign up to Blog</span>
     <form action="" method="post" novalidate>
@@ -39,13 +16,4 @@
             <a href="restore">Forgot password?</a>
         </div>
     </form>
-    <footer>
-        <div id="footer-about">
-            Some Meaningful Text About the Project and people behind it
-        </div>
-        <div id="footer-authorship">
-            2019-2019 Author (c)
-        </div>
-    </footer>
-</body>
-</html>
+{% endblock %}

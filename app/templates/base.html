@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title%} {% endblock %} - Trial Blog</title>
+    <link rel="stylesheet" href={{ url_for('static', filename='reset.css') }} type="text/css">
+    <link rel="stylesheet" href={{ url_for('static', filename='base.css') }} type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e8a8e0bb5a.js" crossorigin="anonymous"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header>
+            <nav id="links">
+                <a>Home</a>
+                <a>Articles</a>
+            </nav>
+            <div class="userbar">
+                <div class="dropdown">
+                    {% if session["username"] %}
+                         <div class="navavatar">
+                             <img src={{ url_for('static', filename='{0}.jpg'.format(session["username"])) or
+                             url_for('static', filename='default_avatar.png') }}>
+                         </div>
+                    {% endif %}
+                    {% if not session["username"] %}
+                         <div class="navavatar">
+                             <img src={{ url_for('static', filename='anonymous.png') }}>
+                         </div>
+                    {% endif %}
+                    <button class="dropdown-menu"></button>
+                    <div class="dropdown-content">
+                        <a href="/settings">Settings</a>
+                        {% if session["username"] %}
+                            <a href="/signout">Sign Out</a>
+                        {% endif %}
+                        {% if not session["username"] %}
+                            <a href="/signin">Sign In</a>
+                            <a href="/signup">Sign Up</a>
+                        {% endif %}
+                        <a href="#">Help</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+    {% block content %}{% endblock %}
+    <footer>
+        <div>
+            Some Meaningful Text About the Project and people behind it
+        </div>
+        <div id ='footer-authorship'>
+            2019-2019 Author (c)
+        </div>
+    </footer>
+</body>
+</html>
