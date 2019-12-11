@@ -1,34 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Someone's Blog - Article Name</title>
-    <link rel="stylesheet" href="reset.css" type="text/css">
-    <link rel="stylesheet" href="settings.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/e8a8e0bb5a.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <header>
-        <nav id="links">
-            <a>Home</a>
-            <a>Sign Up</a>
-            <a>Articles</a>
-        </nav>
-        <div class="userbar">
-            <div class="dropdown">
-                <div class="navavatar"><img src="skeleton.jpg"></div>
-                <button class="dropdown-menu"></button>
-                <div class="dropdown-content">
-                    <a href="#">Settings</a>
-                    <a href="#">Sign Out</a>
-                    <a href="#">Help</a>
-                </div>
-            </div>
-        </div>
-    </header>
+{% extends "base.html" %}
+{% block head %}
+    <link rel="stylesheet" href={{ url_for('static', filename='settings.css') }} type="text/css">
+{% endblock %}
+{% block title %}Personal Settings{% endblock %}
+{% block content %}
     <div id="settings">
         <div id="personal-settings">
             <form id="username-change-form" action="" method="post">
@@ -58,13 +33,4 @@
             <input type="submit" value="Change Email or Password">
         </form>
     </div>
-    <footer>
-        <div>
-            Some Meaningful Text About the Project and people behind it
-        </div>
-        <div id ='footer-authorship'>
-            2019-2019 Author (c)
-        </div>
-    </footer>
-</body>
-</html>
+{% endblock %}
