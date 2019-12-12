@@ -99,4 +99,5 @@ form#avatar-settings-form input[type=submit] {
 
 #settings-avatar {
     border-radius: 5px;
+    border: black 0.5px solid;
 }

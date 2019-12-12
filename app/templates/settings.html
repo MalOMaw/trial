@@ -2,34 +2,37 @@
 {% block head %}
     <link rel="stylesheet" href={{ url_for('static', filename='settings.css') }} type="text/css">
 {% endblock %}
+{% block scripts %}
+    <script src={{ url_for('static', filename='settings.js') }}></script>
+{% endblock %}
 {% block title %}Personal Settings{% endblock %}
 {% block content %}
     <div id="settings">
         <div id="personal-settings">
             <form id="username-change-form" action="" method="post">
                 <span class="field-caption">Username:</span>
-                <input type="text" name="newusername">
+                {{ usernameform.new_username }}
                 <input type="submit" value="Update Username">
             </form>
-            <form id="avatar-settings-form" action="" method="post">
+            <form id="avatar-settings-form" action="/settings/avatar" method="post" enctype="multipart/form-data">
                 <span class="field-caption">Avatar:</span>
                 <img src="avatar2.jpg" width="256px" height="256px" id="settings-avatar">
                 <div class="input-container">
                     <i class="fas fa-pen edit-icon"></i>
-                    <input type="file" name="new-avatar-image">
+                    {{ avatarForm.newAvatar }}
                 </div>
                 <input type="submit" value="Update User Picture">
             </form>
         </div>
         <form id="password-or-email" action="" method="post">
             <span class="field-caption">Old Password</span>
-            <input type="password" name="old-password">
+            {{ emailOrPasswordForm.oldPassword }}
             <span class="field-caption">New E-Mail</span>
-            <input type="email" name="new-email">
+            {{ emailOrPasswordForm.newEmail }}
             <span class="field-caption">New Password</span>
-            <input type="password" name="new-password">
+            {{ emailOrPasswordForm.password }}
             <span class="field-caption">New Password (Confirm)</span>
-            <input type="password" name="new-password-confirm">
+            {{ emailOrPasswordForm.confirm }}
             <input type="submit" value="Change Email or Password">
         </form>
     </div>
