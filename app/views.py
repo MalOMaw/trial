@@ -25,7 +25,6 @@ def show_article(article_id):
             datetime = comment.datetime
             comments.append({'username':username, 'content':content, 'datetime':datetime})
         return render_template("article.html", articleName=article.name,
-                               blogName='Dummy Var',
                                content=Markup(article.content),
                                form=form,
                                comments=comments,
@@ -68,6 +67,57 @@ def signOut():
     del session["username"]
     return redirect(url_for('index'))
 
+
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
+    from .forms import AvatarSettingsForm, PasswordOrEmailForm, ChangeUserNameForm
+    avatar_form = AvatarSettingsForm()
+    email_password_form = PasswordOrEmailForm()
+    username_form = ChangeUserNameForm()
+    if not session.get("username"):
+        return abort(404)
+    username_form.new_username.data = session["username"]
+    return render_template("settings.html", avatarForm=avatar_form, emailOrPasswordForm=email_password_form, usernameform = username_form)
+
+def crop_image(img):
+    import math
+    from PIL import Image
+    width = img.width
+    height = img.height
+    if width != height != 256:
+        aspect_ratio = height / width
+        vertical_crop = 0
+        horizontal_crop = 0
+        if height > width:
+            aspect_ratio = height / width
+            img = img.resize((256, math.trunc(256 * aspect_ratio)), Image.BILINEAR)
+            vertical_crop = (img.height - 256) / 2
+        else:
+            img = img.resize((math.trunc(256 / aspect_ratio), 256), Image.BILINEAR)
+            horizontal_crop = (img.width - 256) / 2
+        return img.crop((horizontal_crop, vertical_crop, 256 + horizontal_crop, 256 + vertical_crop))
+    return img
+
+
+@app.route('/settings/avatar', methods=['GET', 'POST'])
+def change_avatar():
+    from pathlib import Path
+    from .forms import AvatarSettingsForm
+    from PIL import Image
+    if not session.get("username"):
+        return abort(404)
+    form = AvatarSettingsForm(request.form)
+    if request.method == 'POST' and form.validate():
+        image_data = request.files[form.newAvatar.name]
+        img = Image.open(image_data)
+        if img.width > 2048 or img.height > 2048:
+            flash("The image size is too big! Maximum: 1024x1024")
+        cropped_image = crop_image(img)
+        img.save(Path(__file__).parent.joinpath('static').joinpath(session['username']+'.jpg'))
+        return redirect('/settings')
+
+
+
 @app.route('/comment', methods=['GET', 'POST'])
 def submit_post():
     from .models import User, Comment, Article
@@ -76,7 +126,7 @@ def submit_post():
     from .database import db_session
     form = PostSubmitForm(request.form)
     if request.method == 'POST' and form.validate():
-        if not session["username"]:
+        if not session.get("username"):
             print('no user session')
             return redirect("/", code=404)
         user = User.query.filter(User.username == session["username"]).first()
