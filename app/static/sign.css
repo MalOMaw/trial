@@ -54,12 +54,6 @@ form a:link, form a:visited {
     vertical-align: bottom;
 }
 
-body {
-    font-family: 'IBM Plex Serif', serif;
-    width: 100%;
-    background-image: url("triangle-mosaic.png");
-}
-
 form {
     border-radius: 5px;
     margin: auto;
@@ -78,4 +72,14 @@ img#logo {
     margin-top: 30px;
     margin-bottom: 30px;
     display: block;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+div.content {
+    min-height: 0;
 }

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block head %}
+    {{ super() }}
     <link rel="stylesheet" href={{ url_for('static', filename='index.css') }} type="text/css">
 {% endblock %}
 {% block title %}Home Page{% endblock %}

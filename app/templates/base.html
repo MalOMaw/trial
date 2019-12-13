@@ -13,38 +13,43 @@
 </head>
 <body>
     <header>
-            <nav id="links">
-                <a>Home</a>
-                <a>Articles</a>
-            </nav>
-            <div class="userbar">
-                <div class="dropdown">
+        <nav id="links">
+            <a>Home</a>
+            <a>Articles</a>
+        </nav>
+        <div class="userbar">
+            <div class="dropdown">
+                {% if session["username"] %}
+                     <div class="navavatar">
+                         <img src={{ url_for('static', filename='{0}.jpg'.format(session['username'])) }}>
+                     </div>
+                {% endif %}
+                {% if not session["username"] %}
+                     <div class="navavatar">
+                         <img src={{ url_for('static', filename='anonymous.png') }}>
+                     </div>
+                {% endif %}
+                <button class="dropdown-menu"></button>
+                <div class="dropdown-content">
+                    <a href="/settings">Settings</a>
                     {% if session["username"] %}
-                         <div class="navavatar">
-                             <img src={{ url_for('static', filename='{0}.jpg'.format(session['username'])) }}>
-                         </div>
+                        <a href="/signout">Sign Out</a>
                     {% endif %}
                     {% if not session["username"] %}
-                         <div class="navavatar">
-                             <img src={{ url_for('static', filename='anonymous.png') }}>
-                         </div>
+                        <a href="/signin">Sign In</a>
+                        <a href="/signup">Sign Up</a>
                     {% endif %}
-                    <button class="dropdown-menu"></button>
-                    <div class="dropdown-content">
-                        <a href="/settings">Settings</a>
-                        {% if session["username"] %}
-                            <a href="/signout">Sign Out</a>
-                        {% endif %}
-                        {% if not session["username"] %}
-                            <a href="/signin">Sign In</a>
-                            <a href="/signup">Sign Up</a>
-                        {% endif %}
-                        <a href="#">Help</a>
-                    </div>
+                    <a href="#">Help</a>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
+    <div class="content">
     {% block content %}{% endblock %}
+    <script src={{ url_for('static', filename='navbar.js') }}></script>
+    {% block scripts %}
+    {% endblock %}
+    </div>
     <footer>
         <div>
             Some Meaningful Text About the Project and people behind it
@@ -53,8 +58,5 @@
             2019-2019 Author (c)
         </div>
     </footer>
-    <script src={{ url_for('static', filename='navbar.js') }}></script>
-    {% block scripts %}
-    {% endblock %}
 </body>
 </html>
