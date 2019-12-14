@@ -43,7 +43,10 @@ def signIn():
         user = User.query.filter(User.username == form.username.data).first()
         if user and user.password == hashlib.sha256(form.password.data.encode()).hexdigest():
             session["username"] = form.username.data
+            flash("Signed In Successfully!", 'success')
             return redirect("/")
+        else:
+            flash("Invalid username or password.", 'error')
     return render_template("signin.html", form=form)
 
 
@@ -57,7 +60,7 @@ def signUp():
         user = User(form.username.data, form.email.data, hashlib.sha256(form.password.data.encode()).hexdigest())
         db_session.add(user)
         db_session.commit()
-        flash("User record has been created!")
+        flash("Singed Up Successfully", 'success')
         return redirect("/")
     return render_template("signup.html", form=form)
 
@@ -65,6 +68,7 @@ def signUp():
 @app.route('/signout', methods=['GET', 'POST'])
 def signOut():
     del session["username"]
+    flash("Signed Out Successfully!", 'success')
     return redirect(url_for('index'))
 
 
@@ -111,10 +115,60 @@ def change_avatar():
         image_data = request.files[form.newAvatar.name]
         img = Image.open(image_data)
         if img.width > 2048 or img.height > 2048:
-            flash("The image size is too big! Maximum: 1024x1024")
+            flash("The image size is too big! Maximum: 1024x1024", error)
         cropped_image = crop_image(img)
         img.save(Path(__file__).parent.joinpath('static').joinpath(session['username']+'.jpg'))
+        flash("Avatar Changed Successfully!", 'success')
         return redirect('/settings')
+
+
+@app.route('/settings/user', methods=['GET', 'POST'])
+def change_email_or_password():
+    from .forms import PasswordOrEmailForm
+    from .models import User
+    from .database import db_session
+    from hashlib import sha256
+    if not session.get("username"):
+        return abort(404)
+    form = PasswordOrEmailForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User.query.filter(User.username == session['username']).first()
+        if not user.password == sha256(form.oldPassword.data.encode()).hexdigest():
+            flash("Password Incorrect", 'error')
+            redirect('/settings')
+        if form.password.data:
+            user.password = sha256(form.password.data.encode()).hexdigest()
+            db_session.commit()
+            flash("Password Changed Successfully!", 'success')
+        if form.newEmail.data:
+            user.email = form.newEmail.data
+            db_session.commit()
+            flash("Email Changed Successfully!", 'success')
+    if not form.newEmail.data and not form.password.data:
+        flash("No Data Specified To Change", 'error')
+    return redirect('/settings')
+
+
+@app.route('/settings/username', methods=['GET', 'POST'])
+def change_username():
+    from .forms import ChangeUserNameForm
+    from .models import User
+    from .database import db_session
+    from pathlib import Path
+    import os
+    if not session.get("username"):
+        return abort(404)
+    form = ChangeUserNameForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User.query.filter(User.username == session['username']).first()
+        user.username = form.new_username.data
+        db_session.commit()
+        path_to_avatars = Path(__file__).parent.joinpath('static')
+        old_avatar = path_to_avatars.joinpath(session['username'] + '.jpg')
+        if old_avatar.exists():
+            os.rename(old_avatar, path_to_avatars.joinpath(user.username + '.jpg'))
+        session['username'] = user.username
+    return redirect('/settings')
 
 
 
@@ -127,17 +181,15 @@ def submit_post():
     form = PostSubmitForm(request.form)
     if request.method == 'POST' and form.validate():
         if not session.get("username"):
-            print('no user session')
             return redirect("/", code=404)
         user = User.query.filter(User.username == session["username"]).first()
         article_id = form.article_id.data
         article = Article.query.filter(Article.id == article_id).first()
         if not user or not article:
-            print("user is", user)
-            print("article_id is", article_id)
             return redirect("/", code=404)
         comment = Comment(datetime.datetime.now(), form.content.data, user.id)
         article.comments.append(comment)
         db_session.commit()
+        flash("Comment Submitted Successfully!", 'success')
         return redirect("/article/{0}#comments".format(article_id))
     return redirect("/", code=404)

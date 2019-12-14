@@ -9,14 +9,14 @@
 {% block content %}
     <div id="settings">
         <div id="personal-settings">
-            <form id="username-change-form" action="" method="post">
+            <form id="username-change-form" action="/settings/username" method="post">
                 <span class="field-caption">Username:</span>
                 {{ usernameform.new_username }}
                 <input type="submit" value="Update Username">
             </form>
             <form id="avatar-settings-form" action="/settings/avatar" method="post" enctype="multipart/form-data">
                 <span class="field-caption">Avatar:</span>
-                <img src="avatar2.jpg" width="256px" height="256px" id="settings-avatar">
+                <img src={{ url_for('static', filename='{0}.jpg'.format(session['username'])) }} width="256px" height="256px" id="settings-avatar">
                 <div class="input-container">
                     <i class="fas fa-pen edit-icon"></i>
                     {{ avatarForm.newAvatar }}
@@ -24,7 +24,7 @@
                 <input type="submit" value="Update User Picture">
             </form>
         </div>
-        <form id="password-or-email" action="" method="post">
+        <form id="password-or-email" action="/settings/user" method="post" novalidate>
             <span class="field-caption">Old Password</span>
             {{ emailOrPasswordForm.oldPassword }}
             <span class="field-caption">New E-Mail</span>

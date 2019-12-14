@@ -12,6 +12,15 @@
     {% block head %}{% endblock %}
 </head>
 <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes">
+            {% for category, message in messages %}
+                <li class="{{ 'flash flash-{0}'.format(category) }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
     <header>
         <nav id="links">
             <a>Home</a>
@@ -31,9 +40,9 @@
                 {% endif %}
                 <button class="dropdown-menu"></button>
                 <div class="dropdown-content">
-                    <a href="/settings">Settings</a>
                     {% if session["username"] %}
                         <a href="/signout">Sign Out</a>
+                        <a href="/settings">Settings</a>
                     {% endif %}
                     {% if not session["username"] %}
                         <a href="/signin">Sign In</a>
@@ -47,6 +56,7 @@
     <div class="content">
     {% block content %}{% endblock %}
     <script src={{ url_for('static', filename='navbar.js') }}></script>
+    <script src={{ url_for('static', filename='base.js') }}></script>
     {% block scripts %}
     {% endblock %}
     </div>

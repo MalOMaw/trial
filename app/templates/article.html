@@ -21,7 +21,6 @@
                 <span class="postrating">0</span>
             </div>
         {% endfor %}
-    </div>
         {% if session["username"] %}
             <form action="/comment" method="post">
                 {{ form.content }}

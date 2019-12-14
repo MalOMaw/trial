@@ -32,12 +32,12 @@ class PasswordOrEmailForm(Form):
         validators.DataRequired(),
     ])
     password = PasswordField('New  Password', [
-        validators.DataRequired(),
         validators.EqualTo('confirm', message='Passwords must match')
     ])
     confirm = PasswordField('Repeat New Password')
     newEmail = StringField(64)
 
 class ChangeUserNameForm(Form):
-    new_username = StringField('Username', [validators.Length(min=4, max=25)])
+    new_username = StringField('Username', [validators.Length(min=4, max=25),
+                                            validators.DataRequired()])
 

@@ -116,3 +116,40 @@ div.userbar {
     width: fit-content;
     justify-content: flex-end;
 }
+
+ul.flashes {
+    margin-top: 5px;
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: fit-content;
+}
+
+.flash {
+    border-radius: 5px;
+    padding: 10px 20px;
+    display: block;
+    border: 0.5px solid black;
+    background-color: white;
+    width: fit-content;
+    margin: auto;
+    z-index: 1;
+    font-size: 25px;
+    font-weight: bolder;
+    transition: opacity 5s;
+    margin-bottom: 5px;
+}
+
+.flash-error {
+    border: 0.5px solid #8f171d;
+    background-color: #ffb5b0;
+}
+
+.flash-success {
+    border: 0.5px solid #2c602e;
+    background-color: #e8ffce;
+}
+
+.hidden-flash {
+    opacity: 0;
+}
