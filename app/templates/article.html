@@ -15,12 +15,13 @@
         {% for comment in comments %}
             <div class = "comment">
                 <span class="comment-content">{{ comment["content"] }}</span>
-                <img src="skeleton.jpg" class="posteravatar">
+                <img src={{ url_for('static', filename='{0}.jpg'.format(comment["username"])) }} class="posteravatar">
                 <span class="postedby">{{ comment["username"] }}</span>
                 <span class="postdate">{{ comment["datetime"].strftime("%b %d %Y %H:%M") }}</span>
                 <span class="postrating">0</span>
             </div>
         {% endfor %}
+    </div>
         {% if session["username"] %}
             <form action="/comment" method="post">
                 {{ form.content }}
@@ -29,4 +30,7 @@
             </form>
         {% endif %}
     </section>
+{% endblock %}
+{% block scripts %}
+    <script src={{ url_for('static', filename='article.js') }}></script>
 {% endblock %}
