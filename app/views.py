@@ -14,6 +14,7 @@ def show_article(article_id):
     from jinja2 import Markup
     from .models import Article, User
     from .forms import PostSubmitForm
+    import markdown
     article = Article.query.filter(Article.id == article_id).first()
     form = PostSubmitForm()
     form.article_id = article_id
@@ -24,8 +25,10 @@ def show_article(article_id):
             content = comment.content
             datetime = comment.datetime
             comments.append({'username':username, 'content':content, 'datetime':datetime})
+        content = Markup('<h1 class="article-name">{0}</h1>\n'.format(article.name) +
+                         markdown.markdown(article.content, output_format="html5"))
         return render_template("article.html", articleName=article.name,
-                               content=Markup(article.content),
+                               content=content,
                                form=form,
                                comments=comments,
                                comments_number = len(comments))

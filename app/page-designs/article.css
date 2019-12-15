@@ -267,6 +267,14 @@ figure img {
     display: block;
 }
 
+img {
+    max-width: 50vw;
+    max-height: 50vh;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 figure {
     width: 100%;
     height: 100%;

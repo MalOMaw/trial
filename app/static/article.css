@@ -118,21 +118,21 @@ h1, h2, h3 {
     width: fit-content;
 }
 
-h1 {
+h1.article-name {
     font-weight: bolder;
     font-size: 50px;
     margin-top: 20px;
     margin-bottom: 45px;
 }
 
-h2 {
+h1 {
     font-weight: bold;
     font-size: 30px;
     margin-top: 25px;
     margin-bottom: 25px;
 }
 
-h3 {
+h2 {
     font-weight: bold;
     font-size: 1em;
     margin-top: 15px;
@@ -141,6 +141,14 @@ h3 {
 
 address {
     font-style: italic;
+}
+
+img {
+    max-width: 50vw;
+    max-height: 50vh;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 figure img {
