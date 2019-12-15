@@ -1,3 +1,14 @@
+a.new {
+    width: fit-content;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    margin-right: 20px;
+    background-color: #72f28c;
+    line-height: 10px;
+    font-weight: bolder;
+}
+
 div#userbar {
     display: flex;
     align-items: center;

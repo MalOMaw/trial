@@ -26,7 +26,11 @@
             <a>Home</a>
             <a>Articles</a>
         </nav>
-        <div class="userbar">
+        {% if session["username"] %}
+            <a class="new" href="">
+                +
+            </a>
+        {% endif %}
             <div class="dropdown">
                 {% if session["username"] %}
                      <div class="navavatar">
