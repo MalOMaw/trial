@@ -1,0 +1,60 @@
+form {
+    min-width: 80%;
+    min-height: 80%;
+    margin: auto 10vw;
+}
+
+form textarea {
+    font-size: 12px;
+    min-width: 120ch;
+    min-height: 30rem;
+    display: block;
+    font-weight: lighter;
+    font-family: 'IBM Plex Serif', serif;
+    resize: none;
+    background-color: white;
+    box-shadow: 0 0 10px lightgrey;
+    border-radius: 5px;
+    border: 0.5px solid lightgray;
+}
+
+input[type='text'] {
+    padding: 2px;
+    font-size: 18px;
+    display: block;
+    font-weight: lighter;
+    font-family: 'IBM Plex Serif', serif;
+    resize: none;
+    background-color: white;
+    box-shadow: 0 0 10px lightgrey;
+    border-radius: 5px;
+    border: 0.5px solid lightgray;
+}
+
+input {
+    display: block;
+    margin: 10px 0;
+}
+
+input[type="submit"] {
+    font-family: 'Raleway';
+    font-weight: bold;
+    display: inline-block;
+    width: fit-content;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(2,255,129,1) 0%, rgba(29,199,62,1) 100%);
+    border: darkseagreen;
+    font-size: 20px;
+    margin-bottom: 35px;
+    padding: 4px;
+    padding-right: 30px;
+    padding-left: 30px;
+    text-align: center;
+    vertical-align: center;
+    border-radius: 2px;
+    transition: background 0.5s ease;
+}
+
+input[type="submit"]:hover {
+    background: linear-gradient(180deg, rgba(2,255,129,1) 0%, rgb(2, 145, 37) 100%);
+}

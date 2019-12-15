@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}New Article{% endblock %}
+{% block content %}
+    <form action="" method="post">
+        <input type="text" name="name" placeholder="Article name">
+        <textarea name="content" placeholder="Article content"></textarea>
+        <input type="submit">
+    </form>
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href={{ url_for('static', filename='submit.css') }} type='text/css'>
+{% endblock %}
