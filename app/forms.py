@@ -37,7 +37,14 @@ class PasswordOrEmailForm(Form):
     confirm = PasswordField('Repeat New Password')
     newEmail = StringField(64)
 
+
 class ChangeUserNameForm(Form):
     new_username = StringField('Username', [validators.Length(min=4, max=25),
                                             validators.DataRequired()])
 
+
+class ArticleSubmissionForm(Form):
+    name = TextAreaField('Article Name', [validators.data_required(),
+                                          validators.Length(min=5, max=64)])
+    content = TextAreaField('Content', [validators.data_required(),
+                                        validators.Length(min=128)])
