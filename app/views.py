@@ -63,6 +63,7 @@ def signUp():
         user = User(form.username.data, form.email.data, hashlib.sha256(form.password.data.encode()).hexdigest())
         db_session.add(user)
         db_session.commit()
+        session['username'] = user.username
         flash("Singed Up Successfully", 'success')
         return redirect("/")
     return render_template("signup.html", form=form)
@@ -118,7 +119,7 @@ def change_avatar():
         image_data = request.files[form.newAvatar.name]
         img = Image.open(image_data)
         if img.width > 2048 or img.height > 2048:
-            flash("The image size is too big! Maximum: 1024x1024", error)
+            flash("The image size is too big! Maximum: 1024x1024", 'error')
         cropped_image = crop_image(img)
         img.save(Path(__file__).parent.joinpath('static').joinpath(session['username']+'.jpg'))
         flash("Avatar Changed Successfully!", 'success')
@@ -171,6 +172,7 @@ def change_username():
         if old_avatar.exists():
             os.rename(old_avatar, path_to_avatars.joinpath(user.username + '.jpg'))
         session['username'] = user.username
+        flash("Username Changed Successfully!", 'success')
     return redirect('/settings')
 
 
