@@ -195,4 +195,22 @@ def submit_post():
 
 @app.route('/submit', methods=['GET', 'POST'])
 def submit_article():
-    return render_template('submit.html')
+    from .models import User, Article
+    from .forms import ArticleSubmissionForm
+    import datetime
+    from .database import db_session
+    form = ArticleSubmissionForm(request.form)
+    if request.method == 'POST' and form.validate():
+        if not session.get("username"):
+            flash("Unauthorized publication attempt.")
+            return redirect("")
+        user = User.query.filter(User.username == session["username"]).first()
+        if not user:
+            flash("Invalid cookies. Session nullified.")
+            return redirect("/signout")
+        article = Article(form.name.data, datetime.datetime.now(), form.content.data, user.id)
+        db_session.add(article)
+        db_session.commit()
+        flash("Article Created Succesfully!", "success")
+        return redirect('/article/{0}'.format(article.id))
+    return render_template('submit.html', form=form)

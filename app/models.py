@@ -10,11 +10,13 @@ class Article(Base):
     content = Column(String(), unique=True)
     comments = relationship('Comment')
     author_id = Column(Integer, ForeignKey('Users.id'))
+    datetime = Column(DateTime())
 
-    def __init__(self, name, content="", user_id=0):
+    def __init__(self, name, datetime, content, user_id):
         self.name = name
         self.content = content
         self.user_id = user_id
+        self.datetime = datetime
 
     def __repr__(self):
         return '<Article %r>' % self.id
