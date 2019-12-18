@@ -212,7 +212,7 @@ def submit_article():
             return redirect("")
         user = User.query.filter(User.username == session["username"]).first()
         if not user:
-            flash("Invalid cookies. Session nullified.")
+            flash("Invalid cookies. Please, login again.")
             return redirect("/signout")
         article = Article(form.name.data, datetime.datetime.now(), form.content.data, user.id)
         db_session.add(article)
