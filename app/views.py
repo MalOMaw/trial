@@ -198,6 +198,7 @@ def submit_post():
         return redirect("/article/{0}#comments".format(article_id))
     return redirect("/", code=404)
 
+
 @app.route('/submit', methods=['GET', 'POST'])
 def submit_article():
     from .models import User, Article
@@ -216,6 +217,6 @@ def submit_article():
         article = Article(form.name.data, datetime.datetime.now(), form.content.data, user.id)
         db_session.add(article)
         db_session.commit()
-        flash("Article Created Succesfully!", "success")
+        flash("Article Created Successfully!", "success")
         return redirect('/article/{0}'.format(article.id))
     return render_template('submit.html', form=form)

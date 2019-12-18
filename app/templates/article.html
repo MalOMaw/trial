@@ -5,6 +5,10 @@
 {% endblock %}
 {% block title %}{{ articleName }}{% endblock %}
 {% block content %}
+    <div id="author-meta">
+        <img class="avatar author-avatar" src={{ url_for('static', filename=author.avatar) }}>
+        <span class="author-username">{{ author.username }}</span>
+    </div>
     <article>
         {{ content }}
     </article>
