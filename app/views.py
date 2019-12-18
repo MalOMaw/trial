@@ -15,7 +15,6 @@ def show_article(article_id):
     from jinja2 import Markup
     from .models import Article, User
     from .forms import PostSubmitForm
-    from .markup import to_html
     article = Article.query.filter(Article.id == article_id).first()
     form = PostSubmitForm()
     form.article_id = article_id
