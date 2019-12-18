@@ -11,11 +11,11 @@ function avatarsExist() {
 }
 
 function prettifyPreparation() {
-    let codeblocks = document.querySelectorAll("article code")
+    let codeblocks = document.querySelectorAll("article code");
     codeblocks.forEach((block) => {
         block.classList.add('prettyprint')
-    })
-    let preblocks = document.querySelectorAll("article pre")
+    });
+    let preblocks = document.querySelectorAll("article pre");
     preblocks.forEach((block) => {
         block.classList.add('prettyprint')
     })
