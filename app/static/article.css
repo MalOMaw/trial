@@ -35,7 +35,7 @@ textarea {
 }
 
 span#coments-section-caption {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 50px;
     margin-bottom: 20px;
     display: block;
@@ -64,7 +64,7 @@ span.postrating {
     display: inline-block;
     color: darkgray;
     font-size: 30px;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: lighter;
     float: right;
 }
@@ -113,7 +113,7 @@ article {
 }
 
 h1, h2, h3 {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     border-bottom: lightgrey solid 1px;
     width: fit-content;
 }
@@ -208,11 +208,12 @@ article ol {
 }
 
 article span#article-name {
-    font-weight: bolder;
+    font-weight: 100;
     font-size: 50px;
     display: block;
     width: fit-content;
     margin: auto;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 #meta .author-avatar {

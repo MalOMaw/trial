@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block head %}
     <link rel="stylesheet" href={{ url_for('static', filename='article.css') }} type="text/css">
-    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
 {% endblock %}
 {% block title %}{{ articleName }}{% endblock %}
 {% block content %}
@@ -40,6 +39,7 @@
     </section>
 {% endblock %}
 {% block scripts %}
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
     <script src={{ url_for('static', filename='prettify_pre.js') }}></script>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 {% endblock %}
