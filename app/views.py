@@ -25,12 +25,17 @@ def show_article(article_id):
             content = comment.content
             datetime = comment.datetime
             comments.append({'username':username, 'content':content, 'datetime':datetime})
-        content = '<h1 class="article-name">{0}</h1>\n'.format(article.name) + markdown(article.content, extensions=['extra', 'nl2br', 'sane_lists'])
+        content = markdown(article.content, extensions=['extra', 'nl2br', 'sane_lists'])
+        author = dict()
+        author['username'] = User.query.filter(User.id == article.author_id).first().username
+
         return render_template("article.html", articleName=article.name,
                                content=Markup(content),
                                form=form,
                                comments=comments,
-                               comments_number = len(comments))
+                               comments_number = len(comments),
+                               author=author,
+                               post_date=article.datetime)
     else:
         abort(404)
 

@@ -118,13 +118,6 @@ h1, h2, h3 {
     width: fit-content;
 }
 
-h1.article-name {
-    font-weight: bolder;
-    font-size: 50px;
-    margin-top: 20px;
-    margin-bottom: 45px;
-}
-
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     font-size: 30px;
@@ -189,7 +182,7 @@ figcaption {
     border-bottom: lightgrey solid 1px;
 }
 
-p {
+article p {
     margin-top: 30px;
     margin-bottom: 30px;
     font-size: 20px;
@@ -214,3 +207,40 @@ article ol {
     list-style-position: inside;
 }
 
+article span#article-name {
+    font-weight: bolder;
+    font-size: 50px;
+    display: block;
+    width: fit-content;
+    margin: auto;
+}
+
+#meta .author-avatar {
+    display: inline-block;
+    width: 50px;
+    border-radius: 50%;
+    float: left;
+}
+
+#meta #post-info {
+    float: left;
+    display: inline-block;
+    margin: 0;
+    text-align: left;
+    font-size: 16px;
+}
+
+#meta span {
+    margin-left: 5px;
+    display: block;
+}
+
+#meta {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+.article-post-date {
+    color: #3d3d3d;
+}

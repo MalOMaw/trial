@@ -5,11 +5,15 @@
 {% endblock %}
 {% block title %}{{ articleName }}{% endblock %}
 {% block content %}
-    <div id="author-meta">
-        <img class="avatar author-avatar" src={{ url_for('static', filename=author.username+'.jpg') }}>
-        <span class="author-username">{{ author.username }}</span>
-    </div>
     <article>
+        <div id="meta">
+            <img class="avatar author-avatar" src={{ url_for('static', filename=author['username']+'.jpg') }}>
+            <p id="post-info">
+                <span class="author-username">{{ author['username'] }}</span>
+                <span class="article-post-date">{{ post_date.strftime("%b %d %Y %H:%M") }}</span>
+            </p>
+        </div>
+        <span id="article-name">{{ articleName }}</span>
         {{ content }}
     </article>
     <section id="comments">

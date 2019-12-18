@@ -6,8 +6,8 @@ from app.database import Base
 class Article(Base):
     __tablename__ = 'Articles'
     id = Column(Integer, primary_key=True)
-    name = Column(String(50), unique=True)
-    content = Column(String(), unique=True)
+    name = Column(String(50))
+    content = Column(String())
     comments = relationship('Comment')
     author_id = Column(Integer, ForeignKey('Users.id'))
     datetime = Column(DateTime())
