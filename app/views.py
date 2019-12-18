@@ -11,10 +11,11 @@ def index():
 
 @app.route('/article/<int:article_id>')
 def show_article(article_id):
+    from markdown import markdown
     from jinja2 import Markup
     from .models import Article, User
     from .forms import PostSubmitForm
-    import markdown
+    from .markup import to_html
     article = Article.query.filter(Article.id == article_id).first()
     form = PostSubmitForm()
     form.article_id = article_id
@@ -25,10 +26,9 @@ def show_article(article_id):
             content = comment.content
             datetime = comment.datetime
             comments.append({'username':username, 'content':content, 'datetime':datetime})
-        content = Markup('<h1 class="article-name">{0}</h1>\n'.format(article.name) +
-                         markdown.markdown(article.content, output_format="html5"))
+        content = '<h1 class="article-name">{0}</h1>\n'.format(article.name) + markdown(article.content, extensions=['extra', 'nl2br', 'sane_lists'])
         return render_template("article.html", articleName=article.name,
-                               content=content,
+                               content=Markup(content),
                                form=form,
                                comments=comments,
                                comments_number = len(comments))

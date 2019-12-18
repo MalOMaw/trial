@@ -125,7 +125,7 @@ h1.article-name {
     margin-bottom: 45px;
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     font-size: 30px;
     margin-top: 25px;
@@ -133,10 +133,23 @@ h1 {
 }
 
 h2 {
-    font-weight: bold;
-    font-size: 1em;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    font-size: 25px;
+}
+
+h3 {
+    font-size: 23px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+h5 {
+    font-size: 17px;
+}
+
+h6 {
+    font-size: 15px;
 }
 
 address {
@@ -182,3 +195,22 @@ p {
     font-size: 20px;
     line-height: 1.5em;
 }
+
+strong {
+    font-weight: bold;
+}
+
+article em {
+    font-style: italic;
+}
+
+article ul {
+    list-style: circle;
+    list-style-position: inside;
+}
+
+article ol {
+    list-style: decimal;
+    list-style-position: inside;
+}
+

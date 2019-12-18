@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% block head %}
     <link rel="stylesheet" href={{ url_for('static', filename='article.css') }} type="text/css">
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
 {% endblock %}
 {% block title %}{{ articleName }}{% endblock %}
 {% block content %}
- <article>
+    <article>
         {{ content }}
     </article>
     <section id="comments">
@@ -32,4 +33,5 @@
 {% endblock %}
 {% block scripts %}
     <script src={{ url_for('static', filename='article.js') }}></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 {% endblock %}
