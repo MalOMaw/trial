@@ -34,12 +34,12 @@
             <div class="dropdown">
                 {% if session["username"] %}
                      <div class="navavatar">
-                         <img src={{ url_for('static', filename='{0}.jpg'.format(session['username'])) }}>
+                         <img class="avatar" src={{ url_for('static', filename='{0}.jpg'.format(session['username'])) }}>
                      </div>
                 {% endif %}
                 {% if not session["username"] %}
                      <div class="navavatar">
-                         <img src={{ url_for('static', filename='anonymous.png') }}>
+                         <img class="avatar" src={{ url_for('static', filename='anonymous.png') }}>
                      </div>
                 {% endif %}
                 <button class="dropdown-menu"></button>

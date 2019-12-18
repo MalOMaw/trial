@@ -69,7 +69,7 @@ span.postrating {
     float: right;
 }
 
-img.posteravatar {
+.comment .avatar {
     margin-left: 10px;
     width: 20px;
     clip-path: circle(10px at center);

@@ -50,7 +50,7 @@ div.content {
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
-.navavatar img {
+.navavatar .avatar {
     margin-right: 5px;
     width: 20px;
     border-radius: 5px;

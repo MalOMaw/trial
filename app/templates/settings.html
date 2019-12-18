@@ -16,7 +16,7 @@
             </form>
             <form id="avatar-settings-form" action="/settings/avatar" method="post" enctype="multipart/form-data">
                 <span class="field-caption">Avatar:</span>
-                <img src={{ url_for('static', filename='{0}.jpg'.format(session['username'])) }} width="256px" height="256px" id="settings-avatar">
+                <img class="avatar" src={{ url_for('static', filename='{0}.jpg'.format(session['username'])) }} width="256px" height="256px" id="settings-avatar">
                 <div class="input-container">
                     <i class="fas fa-pen edit-icon"></i>
                     {{ avatarForm.newAvatar }}

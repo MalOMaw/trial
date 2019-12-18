@@ -6,7 +6,7 @@
 {% block title %}{{ articleName }}{% endblock %}
 {% block content %}
     <div id="author-meta">
-        <img class="avatar author-avatar" src={{ url_for('static', filename=author.avatar) }}>
+        <img class="avatar author-avatar" src={{ url_for('static', filename=author.username+'.jpg') }}>
         <span class="author-username">{{ author.username }}</span>
     </div>
     <article>
@@ -20,7 +20,7 @@
         {% for comment in comments %}
             <div class = "comment">
                 <span class="comment-content">{{ comment["content"] }}</span>
-                <img src={{ url_for('static', filename='{0}.jpg'.format(comment["username"])) }} class="posteravatar">
+                <img src={{ url_for('static', filename='{0}.jpg'.format(comment["username"])) }} class="avatar">
                 <span class="postedby">{{ comment["username"] }}</span>
                 <span class="postdate">{{ comment["datetime"].strftime("%b %d %Y %H:%M") }}</span>
                 <span class="postrating">0</span>
@@ -36,6 +36,6 @@
     </section>
 {% endblock %}
 {% block scripts %}
-    <script src={{ url_for('static', filename='article.js') }}></script>
+    <script src={{ url_for('static', filename='prettify_pre.js') }}></script>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 {% endblock %}
