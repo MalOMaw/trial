@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href={{ url_for('static', filename='index.css') }} type="text/css">
+{% endblock %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+    <img id="logo2" src={{ url_for('static', filename='blog.png') }}  width="50px">
+    <span id="caption">Are you sure you want to delete the article?</span>
+    <div id="are-you-sure">
+        <form action="" method="post">
+            <input type="submit">
+            <a id="back">Cancel</a>
+            <input type="hidden" value={{ form.article_id }}>
+        </form>
+    </div>
+{% endblock %}

@@ -232,6 +232,29 @@ def add_article():
         return redirect('/article/{0}'.format(article.id))
     return render_template('submit.html', form=form)
 
+@app.route('/delete/<int:article_id>', methods=['GET', 'POST'])
+def delete_article(article_id):
+    from .models import User, Article
+    from .forms import DeleteArticleForm
+    from .database import db_session
+    form = DeleteArticleForm(request.form)
+    article = Article.query.filter(Article.id == article_id).first()
+    user = User.query.filter(User.username == session['username']).first()
+    author = User.query.filter(User.id == article.author_id).first()
+    if not article or not user or not author:
+        return abort(404) # DB Failure or incorrect form data
+    if user != author:
+        return abort(403) # Unauthorized delete attempt
+    if request.method == 'POST' and form.validate():
+        for comment in article.comments:
+            db_session.delete(comment)
+        db_session.delete(article)
+        db_session.commit()
+        flash("Deletion successful.", category="success")
+        return redirect('/')
+    else:
+        form.article_id = article_id
+        return render_template('delete.html', form=form)
 
 @app.route('/edit/<int:article_id>', methods=['GET', 'POST'])
 def edit_article(article_id):
@@ -254,4 +277,4 @@ def edit_article(article_id):
     else:
         form.content.data = article.content
         form.name.data = article.name
-        return render_template('edit.html', form=form)
+        return render_template('edit.html', form=form, article_id=article_id)

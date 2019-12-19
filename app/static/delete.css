@@ -1,61 +1,35 @@
-form {
-    min-width: 80%;
-    min-height: 80%;
-    margin: auto 10vw;
+img#logo2 {
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: block;
 }
 
-form textarea {
-    font-size: 12px;
-    min-width: 120ch;
-    min-height: 30rem;
+span#signin-span {
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
     display: block;
+    font-family: 'Raleway', sans-serif;
+    width: fit-content;
     font-weight: lighter;
-    font-family: 'IBM Plex Serif', serif;
-    resize: none;
-    background-color: white;
-    box-shadow: 0 0 10px lightgrey;
-    border-radius: 5px;
-    border: 0.5px solid lightgray;
+    font-size: 25px;
 }
 
-input[type='text'] {
-    padding: 2px;
-    font-size: 18px;
-    display: block;
-    font-weight: lighter;
-    font-family: 'IBM Plex Serif', serif;
-    resize: none;
-    background-color: white;
-    box-shadow: 0 0 10px lightgrey;
+div#are-you-sure {
     border-radius: 5px;
-    border: 0.5px solid lightgray;
-}
-
-input {
+    margin: auto;
+    width: fit-content;
     display: block;
-    margin: 10px 0;
+    background-color: white;
+    border: lightgrey solid 1px;
+    padding: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px lightgrey;
 }
 
 input[type="submit"] {
-    font-family: 'Raleway';
-    font-weight: bold;
-    display: inline-block;
-    width: fit-content;
-    background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(2,255,129,1) 0%, rgba(29,199,62,1) 100%);
-    border: darkseagreen;
-    font-size: 20px;
-    margin-bottom: 35px;
-    padding: 4px;
-    padding-right: 30px;
-    padding-left: 30px;
-    text-align: center;
-    vertical-align: center;
-    border-radius: 2px;
-    transition: background 0.5s ease;
-}
-
-button#delete {
     font-family: 'Raleway';
     font-weight: bold;
     display: inline-block;
@@ -74,6 +48,21 @@ button#delete {
     transition: background 0.5s ease;
 }
 
-input[type="submit"]:hover {
-    background: linear-gradient(180deg, rgba(2,255,129,1) 0%, rgb(2, 145, 37) 100%);
+a#back {
+    font-family: 'Raleway';
+    font-weight: bold;
+    display: inline-block;
+    width: fit-content;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgb(159, 255, 172) 0%, rgb(111, 204, 92) 100%);
+    border: darkseagreen;
+    font-size: 20px;
+    margin-bottom: 35px;
+    padding: 4px;
+    padding-right: 30px;
+    padding-left: 30px;
+    text-align: center;
+    vertical-align: center;
+    border-radius: 2px;
+    transition: background 0.5s ease;
 }
