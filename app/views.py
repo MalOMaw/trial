@@ -41,8 +41,8 @@ def show_article(article_id):
         abort(404)
 
 
-@app.route('/signin', methods=['GET', 'POST'])
-def sign_in():
+@app.route('/login', methods=['GET', 'POST'])
+def login():
     from .models import User
     from .forms import LoginForm
     import hashlib
@@ -58,8 +58,8 @@ def sign_in():
     return render_template("signin.html", form=form)
 
 
-@app.route('/signup', methods=['GET', 'POST'])
-def sign_up():
+@app.route('/register', methods=['GET', 'POST'])
+def register():
     from .models import User
     from .forms import RegisterForm
     import hashlib
@@ -74,15 +74,15 @@ def sign_up():
     return render_template("signup.html", form=form)
 
 
-@app.route('/signout', methods=['GET', 'POST'])
-def sign_out():
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
     del session["username"]
     flash("Signed Out Successfully!", 'success')
     return redirect(url_for('index'))
 
 
 @app.route('/settings', methods=['GET', 'POST'])
-def settings():
+def personal_settings():
     from .forms import ChangeAvatarForm, ChangePasswordOrEmailForm, ChangeUserNameForm
     avatar_form = ChangeAvatarForm()
     email_password_form = ChangePasswordOrEmailForm()
