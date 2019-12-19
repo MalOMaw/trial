@@ -247,3 +247,12 @@ article span#article-name {
 .article-post-date {
     color: #3d3d3d;
 }
+
+#edit-article {
+    float: right;
+    font-size: 20px;
+}
+
+#edit-article:link, #edit-article:visited {
+    color: black;
+}

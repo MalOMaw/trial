@@ -14,6 +14,9 @@
         </div>
         <span id="article-name">{{ articleName }}</span>
         {{ content }}
+        {% if session['username'] == author['username'] %}
+        <a id="edit-article" href=""><i class="fas fa-pen edit-icon"></i></a>
+        {% endif %}
     </article>
     <section id="comments">
         <span id="coments-section-caption">
