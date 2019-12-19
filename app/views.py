@@ -205,7 +205,7 @@ def add_comment():
     return redirect("/", code=404)
 
 
-@app.route('comment/delete', methods = ['GET', 'POST'])
+@app.route('/comment/delete', methods = ['GET', 'POST'])
 def del_comment():
     pass
 
