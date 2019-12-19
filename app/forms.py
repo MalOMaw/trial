@@ -56,6 +56,11 @@ class EditArticleForm(Form):
     content = TextAreaField('Content', [validators.data_required(),
                                         validators.Length(min=5)])
 
+
 class DeleteCommentForm(Form):
     comment_id = HiddenField('Comment ID')
+    article_id = HiddenField('Article ID')
+
+
+class DeleteArticleForm(Form):
     article_id = HiddenField('Article ID')
