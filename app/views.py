@@ -182,7 +182,7 @@ def change_username():
 
 
 @app.route('/comment/add', methods=['GET', 'POST'])
-def submit_post():
+def add_comment():
     from .models import User, Comment, Article
     from .forms import PostSubmitForm
     import datetime
@@ -202,6 +202,11 @@ def submit_post():
         flash("Comment Submitted Successfully!", 'success')
         return redirect("/article/{0}#comments".format(article_id))
     return redirect("/", code=404)
+
+
+@app.route('comment/delete', methods = ['GET', 'POST'])
+def del_comment():
+    pass
 
 
 @app.route('/submit', methods=['GET', 'POST'])
