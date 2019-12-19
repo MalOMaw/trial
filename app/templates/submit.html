@@ -2,8 +2,8 @@
 {% block title %}New Article{% endblock %}
 {% block content %}
     <form action="" method="post">
-        <input type="text" name="name" placeholder="Article name">
-        <textarea name="content" placeholder="Article content"></textarea>
+        {{ form.name }}
+        {{ form.content }}
         <input type="submit">
     </form>
 {% endblock %}
