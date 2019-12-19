@@ -1,7 +1,7 @@
 from wtforms import Form, TextAreaField, PasswordField, validators, IntegerField, StringField, HiddenField, FileField
 
 
-class SignUpForm(Form):
+class RegisterForm(Form):
     username = StringField('Username', [validators.Length(min=4, max=25)])
     email = StringField('E-mail', [validators.Length(min=6, max=35)])
     password = PasswordField('Password', [
@@ -11,23 +11,23 @@ class SignUpForm(Form):
     confirm = PasswordField('Repeat Password')
 
 
-class SignInForm(Form):
+class LoginForm(Form):
     username = StringField('Username', [validators.Length(min=4, max=25)])
     password = PasswordField('Password', [
         validators.DataRequired()
     ])
 
 
-class PostSubmitForm(Form):
+class CommentAddForm(Form):
     content = TextAreaField("Post", [validators.length(min=3, max=1024)])
     article_id = HiddenField("Article ID")
 
 
-class AvatarSettingsForm(Form):
+class ChangeAvatarForm(Form):
     newAvatar = FileField("New Avatar")
 
 
-class PasswordOrEmailForm(Form):
+class ChangePasswordOrEmailForm(Form):
     oldPassword = PasswordField('Old Password', [
         validators.DataRequired(),
     ])
@@ -43,19 +43,19 @@ class ChangeUserNameForm(Form):
                                             validators.DataRequired()])
 
 
-class ArticleSubmissionForm(Form):
+class AddArticleForm(Form):
     name = StringField('Article Name', [validators.data_required(),
                                           validators.Length(min=5, max=64)])
     content = TextAreaField('Content', [validators.data_required(),
                                         validators.Length(min=128)])
 
 
-class ArticleEditForm(Form):
+class EditArticleForm(Form):
     name = StringField('Article Name', [validators.data_required(),
                                           validators.Length(min=5, max=256)])
     content = TextAreaField('Content', [validators.data_required(),
                                         validators.Length(min=5)])
 
-class CommentDeletionForm(Form):
+class DeleteCommentForm(Form):
     comment_id = HiddenField('Comment ID')
     article_id = HiddenField('Article ID')

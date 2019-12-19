@@ -14,9 +14,9 @@ def show_article(article_id):
     from markdown import markdown
     from jinja2 import Markup
     from .models import Article, User
-    from .forms import PostSubmitForm
+    from .forms import CommentAddForm
     article = Article.query.filter(Article.id == article_id).first()
-    form = PostSubmitForm()
+    form = CommentAddForm()
     form.article_id = article_id
     if article:
         comments = []
@@ -44,9 +44,9 @@ def show_article(article_id):
 @app.route('/signin', methods=['GET', 'POST'])
 def sign_in():
     from .models import User
-    from .forms import SignInForm
+    from .forms import LoginForm
     import hashlib
-    form = SignInForm(request.form)
+    form = LoginForm(request.form)
     if request.method == 'POST' and form.validate():
         user = User.query.filter(User.username == form.username.data).first()
         if user and user.password == hashlib.sha256(form.password.data.encode()).hexdigest():
@@ -61,9 +61,9 @@ def sign_in():
 @app.route('/signup', methods=['GET', 'POST'])
 def sign_up():
     from .models import User
-    from .forms import SignUpForm
+    from .forms import RegisterForm
     import hashlib
-    form = SignUpForm(request.form)
+    form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
         user = User(form.username.data, form.email.data, hashlib.sha256(form.password.data.encode()).hexdigest())
         db_session.add(user)
@@ -83,9 +83,9 @@ def sign_out():
 
 @app.route('/settings', methods=['GET', 'POST'])
 def settings():
-    from .forms import AvatarSettingsForm, PasswordOrEmailForm, ChangeUserNameForm
-    avatar_form = AvatarSettingsForm()
-    email_password_form = PasswordOrEmailForm()
+    from .forms import ChangeAvatarForm, ChangePasswordOrEmailForm, ChangeUserNameForm
+    avatar_form = ChangeAvatarForm()
+    email_password_form = ChangePasswordOrEmailForm()
     username_form = ChangeUserNameForm()
     if not session.get("username"):
         return abort(404)
@@ -116,11 +116,11 @@ def crop_image(img):
 @app.route('/settings/avatar', methods=['GET', 'POST'])
 def change_avatar():
     from pathlib import Path
-    from .forms import AvatarSettingsForm
+    from .forms import ChangeAvatarForm
     from PIL import Image
     if not session.get("username"):
         return abort(404)
-    form = AvatarSettingsForm(request.form)
+    form = ChangeAvatarForm(request.form)
     if request.method == 'POST' and form.validate():
         image_data = request.files[form.newAvatar.name]
         img = Image.open(image_data)
@@ -134,13 +134,13 @@ def change_avatar():
 
 @app.route('/settings/user', methods=['GET', 'POST'])
 def change_email_or_password():
-    from .forms import PasswordOrEmailForm
+    from .forms import ChangePasswordOrEmailForm
     from .models import User
     from .database import db_session
     from hashlib import sha256
     if not session.get("username"):
         return abort(404)
-    form = PasswordOrEmailForm(request.form)
+    form = ChangePasswordOrEmailForm(request.form)
     if request.method == 'POST' and form.validate():
         user = User.query.filter(User.username == session['username']).first()
         if not user.password == sha256(form.oldPassword.data.encode()).hexdigest():
@@ -185,10 +185,10 @@ def change_username():
 @app.route('/comment/add', methods=['GET', 'POST'])
 def add_comment():
     from .models import User, Comment, Article
-    from .forms import PostSubmitForm
+    from .forms import CommentAddForm
     import datetime
     from .database import db_session
-    form = PostSubmitForm(request.form)
+    form = CommentAddForm(request.form)
     if request.method == 'POST' and form.validate():
         if not session.get("username"):
             return redirect("/", code=404)
@@ -213,10 +213,10 @@ def del_comment():
 @app.route('/submit', methods=['GET', 'POST'])
 def add_article():
     from .models import User, Article
-    from .forms import ArticleSubmissionForm
+    from .forms import AddArticleForm
     import datetime
     from .database import db_session
-    form = ArticleSubmissionForm(request.form)
+    form = AddArticleForm(request.form)
     if request.method == 'POST' and form.validate():
         if not session.get("username"):
             flash("Unauthorized publication attempt.")
@@ -236,9 +236,9 @@ def add_article():
 @app.route('/edit/<int:article_id>', methods=['GET', 'POST'])
 def edit_article(article_id):
     from .models import User, Article
-    from .forms import ArticleEditForm
+    from .forms import EditArticleForm
     from .database import db_session
-    form = ArticleEditForm(request.form)
+    form = EditArticleForm(request.form)
     article = Article.query.filter(Article.id == article_id).first()
     user = User.query.filter(User.username == session['username']).first()
     author = User.query.filter(User.id == article.author_id).first()
