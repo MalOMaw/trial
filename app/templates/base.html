@@ -45,12 +45,12 @@
                 <button class="dropdown-menu"></button>
                 <div class="dropdown-content">
                     {% if session["username"] %}
-                        <a href="/signout">Sign Out</a>
-                        <a href="/settings">Settings</a>
+                        <a href={{ url_for("logout") }}>Sign Out</a>
+                        <a href="{{ url_for("personal_settings") }}">Settings</a>
                     {% endif %}
                     {% if not session["username"] %}
-                        <a href="/signin">Sign In</a>
-                        <a href="/signup">Sign Up</a>
+                        <a href={{ url_for("login") }}>Sign In</a>
+                        <a href={{ url_for("register") }}>Sign Up</a>
                     {% endif %}
                     <a href="#">Help</a>
                 </div>
