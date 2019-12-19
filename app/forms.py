@@ -44,15 +44,14 @@ class ChangeUserNameForm(Form):
 
 
 class ArticleSubmissionForm(Form):
-    name = TextAreaField('Article Name', [validators.data_required(),
+    name = StringField('Article Name', [validators.data_required(),
                                           validators.Length(min=5, max=64)])
     content = TextAreaField('Content', [validators.data_required(),
                                         validators.Length(min=128)])
 
 
 class ArticleEditForm(Form):
-    name = TextAreaField('Article Name', [validators.data_required(),
+    name = StringField('Article Name', [validators.data_required(),
                                           validators.Length(min=5, max=256)])
     content = TextAreaField('Content', [validators.data_required(),
                                         validators.Length(min=5)])
-    article_id = HiddenField("Article ID")
