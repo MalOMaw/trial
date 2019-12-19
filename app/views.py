@@ -42,7 +42,7 @@ def show_article(article_id):
 
 
 @app.route('/signin', methods=['GET', 'POST'])
-def signIn():
+def sign_in():
     from .models import User
     from .forms import SignInForm
     import hashlib
@@ -59,7 +59,7 @@ def signIn():
 
 
 @app.route('/signup', methods=['GET', 'POST'])
-def signUp():
+def sign_up():
     from .models import User
     from .forms import SignUpForm
     import hashlib
@@ -75,7 +75,7 @@ def signUp():
 
 
 @app.route('/signout', methods=['GET', 'POST'])
-def signOut():
+def sign_out():
     del session["username"]
     flash("Signed Out Successfully!", 'success')
     return redirect(url_for('index'))
@@ -91,6 +91,7 @@ def settings():
         return abort(404)
     username_form.new_username.data = session["username"]
     return render_template("settings.html", avatarForm=avatar_form, emailOrPasswordForm=email_password_form, usernameform = username_form)
+
 
 def crop_image(img):
     import math
@@ -210,7 +211,7 @@ def del_comment():
 
 
 @app.route('/submit', methods=['GET', 'POST'])
-def submit_article():
+def add_article():
     from .models import User, Article
     from .forms import ArticleSubmissionForm
     import datetime
@@ -254,4 +255,3 @@ def edit_article(article_id):
         form.content.data = article.content
         form.name.data = article.name
         return render_template('edit.html', form=form)
-    return abort(404)
