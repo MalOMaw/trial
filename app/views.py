@@ -35,7 +35,8 @@ def show_article(article_id):
                                comments=comments,
                                comments_number = len(comments),
                                author=author,
-                               post_date=article.datetime)
+                               post_date=article.datetime,
+                               article_id=article_id)
     else:
         abort(404)
 
@@ -224,3 +225,28 @@ def submit_article():
         flash("Article Created Successfully!", "success")
         return redirect('/article/{0}'.format(article.id))
     return render_template('submit.html', form=form)
+
+
+@app.route('/edit/<int:article_id>', methods=['GET', 'POST'])
+def edit_article(article_id):
+    from .models import User, Article
+    from .forms import ArticleEditForm
+    from .database import db_session
+    form = ArticleEditForm(request.form)
+    article = Article.query.filter(Article.id == article_id).first()
+    user = User.query.filter(User.username == session['username']).first()
+    author = User.query.filter(User.id == article.author_id).first()
+    if not article or not user or not author:
+        return abort(404) # DB Failure or incorrect form data
+    if user != author:
+        return abort(403) # Unauthorized edit attempt
+    if request.method == 'POST' and form.validate():
+        article.content = form.content.data
+        article.name = form.name.data
+        db_session.commit()
+        return redirect('/article/{0}'.format(article_id))
+    else:
+        form.content.data = article.content
+        form.name.data = article.name
+        return render_template('edit.html', form=form)
+    return abort(404)
