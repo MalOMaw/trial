@@ -181,7 +181,7 @@ def change_username():
     return redirect('/settings')
 
 
-@app.route('/comment', methods=['GET', 'POST'])
+@app.route('/comment/add', methods=['GET', 'POST'])
 def submit_post():
     from .models import User, Comment, Article
     from .forms import PostSubmitForm

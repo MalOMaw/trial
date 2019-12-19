@@ -33,7 +33,7 @@
             </div>
         {% endfor %}
         {% if session["username"] %}
-            <form action="/comment" method="post">
+            <form action="/comment/add" method="post">
                 {{ form.content }}
                 <input type="hidden" value="{{ form.article_id }}" name="article_id">
                 <input type="submit" value="Comment">
