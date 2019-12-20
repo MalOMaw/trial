@@ -2,12 +2,14 @@
 {% block title %}Edit Article{% endblock %}
 {% block content %}
     <form action="" method="post">
+        {{ form.name.label }}
         {{ form.name }}
+        {{ form.content.label }}
         {{ form.content }}
         <input type="submit" value="Edit">
         <a href={{ url_for("delete_article", article_id=article_id) }} id="delete">Delete</a>
     </form>
 {% endblock %}
 {% block head %}
-    <link rel="stylesheet" href={{ url_for('static', filename='submit.css') }} type='text/css'>
+    <link rel="stylesheet" href={{ url_for('static', filename='edit.css') }} type='text/css'>
 {% endblock %}

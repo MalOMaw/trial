@@ -33,7 +33,7 @@ def show_article(article_id):
                                content=Markup(content),
                                form=form,
                                comments=comments,
-                               comments_number = len(comments),
+                               comments_number=len(comments),
                                author=author,
                                post_date=article.datetime,
                                article_id=article_id)
