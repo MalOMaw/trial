@@ -26,7 +26,7 @@ class User(Base):
     __tablename__ = 'Users'
     id = Column(Integer, primary_key=True)
     username = Column(String(20), unique=True)
-    password = Column(String(64), unique=True)
+    password = Column(String(64))
     email = Column(String(), unique=True)
 
     def __init__(self, name, email, password):
