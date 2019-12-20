@@ -10,7 +10,7 @@ def index():
 
 
 @app.route('/article/<int:article_id>')
-def show_article(article_id):
+def view_article(article_id):
     from markdown import markdown
     from jinja2 import Markup
     from .models import Article, User
@@ -24,7 +24,8 @@ def show_article(article_id):
             username = User.query.filter(User.id == comment.user_id).first().username
             content = comment.content
             datetime = comment.datetime
-            comments.append({'username':username, 'content':content, 'datetime':datetime})
+            comment_id = comment.id
+            comments.append({'username':username, 'content':content, 'datetime':datetime, 'id':comment_id})
         content = markdown(article.content, extensions=['extra', 'nl2br', 'sane_lists'])
         author = dict()
         author['username'] = User.query.filter(User.id == article.author_id).first().username
@@ -205,9 +206,24 @@ def add_comment():
     return redirect("/", code=404)
 
 
-@app.route('/comment/delete', methods=['GET', 'POST'])
-def del_comment():
-    pass
+@app.route('/comment/delete/<int:comment_id>', methods=['GET', 'POST'])
+def del_comment(comment_id):
+    from .models import User, Comment
+    from .database import db_session
+    comment = Comment.query.filter(Comment.id == comment_id).first()
+    if not comment:
+        abort(404)
+    article_id = comment.article_id
+    if not comment:
+        abort(404)
+    user = User.query.filter(User.username == session['username']).first()
+    if not user:
+        abort(402)
+    if user.id == comment.user_id:
+        db_session.delete(comment)
+        db_session.commit()
+    return redirect(url_for("view_article", article_id=article_id))
+
 
 
 @app.route('/submit', methods=['GET', 'POST'])

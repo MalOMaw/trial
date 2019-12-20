@@ -256,3 +256,11 @@ article span#article-name {
 #edit-article:link, #edit-article:visited {
     color: black;
 }
+
+.delete-comment {
+    color: red;
+    float: right;
+    font-size: 20px;
+    margin-right: 10px;
+    display: inline-block;
+}

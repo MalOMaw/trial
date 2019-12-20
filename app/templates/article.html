@@ -30,6 +30,11 @@
                 <span class="postedby">{{ comment["username"] }}</span>
                 <span class="postdate">{{ comment["datetime"].strftime("%b %d %Y %H:%M") }}</span>
                 <span class="postrating">0</span>
+                {% if comment['username'] == session['username'] %}
+                    <a class="delete-comment" href={{ url_for("del_comment", comment_id=comment['id']) }}>
+                        <i class="fas fa-trash"></i>
+                    </a>
+                {% endif %}
             </div>
         {% endfor %}
         {% if session["username"] %}
