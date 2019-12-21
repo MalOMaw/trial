@@ -251,6 +251,12 @@ article span#article-name {
 #edit-article {
     float: right;
     font-size: 20px;
+    display: block;
+}
+
+iframe {
+    display: block;
+    margin: auto;
 }
 
 #edit-article:link, #edit-article:visited {

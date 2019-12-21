@@ -2,7 +2,9 @@
 {% block title %}New Article{% endblock %}
 {% block content %}
     <form action="" method="post">
+        {{ form.name.label }}
         {{ form.name }}
+        {{ form.content.label }}
         {{ form.content }}
         <input type="submit">
     </form>
