@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Articles{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href={{ url_for('static', filename='articles.css') }} type="text/css">
+{% endblock %}
+{% block content %}
+    <div id="articles">
+    {% for article in articles %}
+        <article>
+            <a target="_blank" href={{ url_for('view_article', article_id=article['id']) }}>
+                <span class="article-name">{{ article['name'] }}</span>
+                <img src=" {{ article['preview_image'] }}">
+                <div class="content-preview">
+                    {{ article['preview_content'] }}
+                </div>
+                <a href={{ url_for('view_article', article_id=article['id'])}}>
+                    <span class="read-more">
+                        Read More...
+                    </span>
+                </a>
+                <span class="comment-count">
+                    <i class="fas fa-comments"></i>
+                    {{ article['comments_count'] }}
+                </span>
+            </a>
+        </article>
+    {% endfor %}
+    </div>
+    <div id="sidebar">
+        <h1 id="tags-caption">Tags</h1>
+        <ul id="tags">
+            <li>Art (322)</li>
+            <li>Development (5)</li>
+            <li>Guides (6)</li>
+            <li>Flask (2)</li>
+        </ul>
+    </div>
+{% endblock %}
