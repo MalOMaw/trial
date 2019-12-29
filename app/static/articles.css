@@ -12,6 +12,7 @@ article {
 h1, h2, h3 {
     font-family: 'IBM Plex Sans', sans-serif;
     width: 100%;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -102,7 +103,7 @@ article ol {
 
 span.article-name {
     font-weight: 100;
-    font-size: 50px;
+    font-size: 35px;
     width: fit-content;
     font-family: 'IBM Plex Sans', sans-serif;
     margin-left: 20px;
@@ -176,7 +177,7 @@ article {
 
 .author-avatar {
     display: inline-block;
-    width: 50px;
+    height: 35px;
     border-radius: 50%;
     float: left;
 }

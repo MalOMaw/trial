@@ -270,3 +270,7 @@ iframe {
     margin-right: 10px;
     display: inline-block;
 }
+
+li {
+    line-height: 2em;
+}
