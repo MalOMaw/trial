@@ -5,10 +5,19 @@
 {% endblock %}
 {% block content %}
     <div id="articles">
+        <article>
+            <span class="article-name centered">Articles (All)</span>
+        </article>
     {% for article in articles %}
         <article>
             <a target="_blank" href={{ url_for('view_article', article_id=article['id']) }}>
+                <img class="avatar author-avatar" src={{ url_for('static', filename=article['author']+'.jpg') }} alt={{ article['author'] }}>
                 <span class="article-name">{{ article['name'] }}</span>
+                <div id="meta">
+                    <p id="post-info">
+                        <span class="article-post-date">{{ article['author'] }} posted on {{ article['date'].strftime("%b %d %Y %H:%M") }}</span>
+                    </p>
+                </div>
                 <img src=" {{ article['preview_image'] }}">
                 <div class="content-preview">
                     {{ article['preview_content'] }}
@@ -25,14 +34,5 @@
             </a>
         </article>
     {% endfor %}
-    </div>
-    <div id="sidebar">
-        <h1 id="tags-caption">Tags</h1>
-        <ul id="tags">
-            <li>Art (322)</li>
-            <li>Development (5)</li>
-            <li>Guides (6)</li>
-            <li>Flask (2)</li>
-        </ul>
     </div>
 {% endblock %}

@@ -12,7 +12,7 @@ def index():
 @app.route('/articles')
 def articles():
     from jinja2 import Markup
-    from .models import Article
+    from .models import Article, User
     from markdown import markdown
     all_articles = Article.query.all()[:5]
     articles = list()
@@ -22,7 +22,8 @@ def articles():
         if len(content_preview) > 200:
             content_preview = content_preview[:200]
         content_preview = markdown(content_preview+'...')
-        articles.append({'name':article.name,'preview_image':preview, 'preview_content':Markup(content_preview), 'id':article.id, 'comments_count':len(article.comments)})
+        user = User.query.filter(User.id == article.author_id).first()
+        articles.append({'date':article.datetime,'author':user.username,'name':article.name,'preview_image':preview, 'preview_content':Markup(content_preview), 'id':article.id, 'comments_count':len(article.comments)})
     return render_template("articles.html", articles=articles)
 
 
