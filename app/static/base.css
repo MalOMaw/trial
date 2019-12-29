@@ -123,6 +123,7 @@ ul.flashes {
     position: fixed;
     width: 100%;
     height: fit-content;
+    pointer-events: none;
 }
 
 .flash {
@@ -138,6 +139,7 @@ ul.flashes {
     font-weight: bolder;
     transition: opacity 5s;
     margin-bottom: 5px;
+    pointer-events: all;
 }
 
 .flash-error {

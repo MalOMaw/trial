@@ -10,6 +10,10 @@ function displayFlashes() {
             flash.remove()
         }, actualTimeOut+delay);
         actualTimeOut += 1000;
+        console.log("It is me 2.");
+        flash.addEventListener("click", () => {
+            flash.remove()
+        })
     });
 }
 
