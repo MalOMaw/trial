@@ -68,11 +68,19 @@ nav#links a {
     vertical-align: middle;
 }
 
+nav#links a:hover {
+    color: #b6b6b6;
+}
+
 nav#links {
     display: flex;
     vertical-align: middle;
     height: fit-content;
     flex: 2;
+}
+
+nav#links a:link {
+    text-decoration-line: none;
 }
 
 footer {

@@ -23,8 +23,8 @@
     {% endwith %}
     <header>
         <nav id="links">
-            <a>Home</a>
-            <a>Articles</a>
+            <a href={{ url_for('index') }}>Home</a>
+            <a href="{{ url_for('articles') }}">Articles</a>
         </nav>
         {% if session["username"] %}
             <a class="new" href="/submit">
