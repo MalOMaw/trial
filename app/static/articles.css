@@ -110,6 +110,7 @@ span.article-name {
 
 span.centered {
     margin: auto;
+    display: block;
 }
 
 
