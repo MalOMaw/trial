@@ -20,8 +20,8 @@ def articles():
         preview = r"https://cdn.pixabay.com/photo/2015/01/11/07/02/moe-595954_960_720.png"
         content_preview = '\n'.join(article.content.splitlines()[:3])  # First 3 lines of article
         if len(content_preview) > 200:
-            content_preview = content_preview[:200]
-        content_preview = markdown(content_preview+'...')
+            content_preview = content_preview[:200]+'...'
+        content_preview = markdown(content_preview)
         user = User.query.filter(User.id == article.author_id).first()
         articles.append({'date':article.datetime,'author':user.username,'name':article.name,'preview_image':preview, 'preview_content':Markup(content_preview), 'id':article.id, 'comments_count':len(article.comments)})
     return render_template("articles.html", articles=articles)
