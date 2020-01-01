@@ -11,12 +11,23 @@ def index():
 
 @app.route('/articles')
 def articles():
+    return articles_page(1)
+
+
+@app.route('/articles/<int:page>')
+def articles_page(page):
     from jinja2 import Markup
     from .models import Article, User
     from markdown import markdown
-    all_articles = Article.query.all()[:5]
+    if not page:
+        page = 1
+    page -= 1
+    all_articles = Article.query.all()
+    selected_articles = all_articles[page*5:page*5+5]
+    if len(selected_articles) == 0:
+        return abort(404)
     articles = list()
-    for article in all_articles:
+    for article in selected_articles:
         preview = r"https://cdn.pixabay.com/photo/2015/01/11/07/02/moe-595954_960_720.png"
         content_preview = '\n'.join(article.content.splitlines()[:3])  # First 3 lines of article
         if len(content_preview) > 200:
