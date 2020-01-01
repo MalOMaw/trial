@@ -14,11 +14,12 @@ def articles():
     return articles_page(1)
 
 
-@app.route('/articles/<int:page>')
+@app.route('/articles/page/<int:page>')
 def articles_page(page):
     from jinja2 import Markup
     from .models import Article, User
     from markdown import markdown
+    from math import trunc
     if not page:
         page = 1
     page -= 1
@@ -26,6 +27,12 @@ def articles_page(page):
     selected_articles = all_articles[page*5:page*5+5]
     if len(selected_articles) == 0:
         return abort(404)
+    last_page = len(all_articles) / 5
+    if last_page > trunc(last_page):
+        last_page = trunc(last_page) + 1
+    else:
+        last_page = trunc(last_page)
+    print(last_page)
     articles = list()
     for article in selected_articles:
         preview = r"https://cdn.pixabay.com/photo/2015/01/11/07/02/moe-595954_960_720.png"
@@ -35,7 +42,7 @@ def articles_page(page):
         content_preview = markdown(content_preview)
         user = User.query.filter(User.id == article.author_id).first()
         articles.append({'date':article.datetime,'author':user.username,'name':article.name,'preview_image':preview, 'preview_content':Markup(content_preview), 'id':article.id, 'comments_count':len(article.comments)})
-    return render_template("articles.html", articles=articles)
+    return render_template("articles.html", articles=articles, last_page=last_page, current_page=page)
 
 
 @app.route('/article/<int:article_id>')

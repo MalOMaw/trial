@@ -205,3 +205,24 @@ article {
 .article-post-date {
     color: #3d3d3d;
 }
+
+#pages {
+    display: flex;
+    width: fit-content;
+    margin: auto;
+}
+
+.pagesquare {
+    display: inline-block;
+    padding: 5px;
+    width: fit-content;
+    height: fit-content;
+    background-color: #000000;
+    color: white;
+    margin: 5px;
+}
+
+.content {
+    display: block;
+}
+

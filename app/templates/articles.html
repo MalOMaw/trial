@@ -37,4 +37,25 @@
         </article>
     {% endfor %}
     </div>
+    <div id="pages">
+        {% if current_page + 4 >= last_page and last_page >= 5  %}
+            <a href="{{ url_for('articles', page=current_page) }}"><div class="pagesquare">{{ current_page }}</div></a>
+            <div class="pagesquare">{{ current_page + 1 }}</div>
+            <div class="pagesquare">{{ current_page + 2 }}</div>
+            <div class="pagesquare">{{ current_page + 3 }}</div>
+            <div class="pagesquare">{{ current_page + 4 }}</div>
+        {% endif %}
+        {% if current_page + 4 < last_page and last_page >= 5 %}
+            <div class="pagesquare">{{ current_page }}</div>
+            <div class="pagesquare">{{ current_page + 1 }}</div>
+            <div class="pagesquare">{{ current_page + 2 }}</div>
+            <div class="pageskip">...</div>
+            <div class="pagesquare">{{ last_page }}</div>
+        {% endif %}
+        {% if last_page < 5 %}
+            {% for page in range(1, last_page + 1) %}
+                <a href="{{ url_for('articles_page', page=page) }}"><div class="pagesquare">{{ page }}</div></a>
+            {% endfor %}
+        {% endif %}
+    </div>
 {% endblock %}
