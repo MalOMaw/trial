@@ -64,7 +64,7 @@ article:hover {
 }
 
 #articles {
-    width: 60%;
+    max-width: 60vw;
     margin: auto;
 }
 
@@ -73,8 +73,8 @@ article:hover {
 }
 
 article {
-    width: 100%;
-    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .author-avatar {
@@ -114,17 +114,44 @@ article {
     margin: auto;
 }
 
-.pagesquare {
-    display: inline-block;
-    padding: 5px;
-    width: fit-content;
-    height: fit-content;
-    background-color: #000000;
-    color: white;
-    margin: 5px;
-}
-
 .content {
     display: block;
 }
 
+.next, .previous, .disabled {
+    padding: 5px;
+    display: inline-block;
+    background-color: #000000;
+    color: white;
+    border-radius: 2px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    transition: background-color 0.5s;
+    font-weight: bold;
+}
+
+.next.disabled, .previous.disabled {
+    background-color: #9f9f9f;
+    color: #000000;
+    pointer-events: none;
+}
+
+.next {
+    float: right;
+}
+
+.previous {
+    float: left;
+}
+
+.next:hover, .previous:hover {
+    background-color: #ffffff;
+    color: black;
+    text-decoration-line: underline;
+}
+
+#controls {
+    margin: auto;
+    max-width: 60vw;
+    height: 50px;
+    display: block;
+}

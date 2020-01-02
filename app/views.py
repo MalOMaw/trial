@@ -9,30 +9,17 @@ def index():
     return render_template("index.html")
 
 
-@app.route('/articles')
-def articles():
-    return articles_page(1)
-
-
 @app.route('/articles/page/<int:page>')
 def articles_page(page):
     from jinja2 import Markup
     from .models import Article, User
     from markdown import markdown
-    from math import trunc
-    if not page:
-        page = 1
-    page -= 1
+    from math import floor
     all_articles = Article.query.all()
     selected_articles = all_articles[page*5:page*5+5]
     if len(selected_articles) == 0:
         return abort(404)
-    last_page = len(all_articles) / 5
-    if last_page > trunc(last_page):
-        last_page = trunc(last_page) + 1
-    else:
-        last_page = trunc(last_page)
-    print(last_page)
+    last_page = floor(len(all_articles) / 5)
     articles = list()
     for article in selected_articles:
         preview = r"https://cdn.pixabay.com/photo/2015/01/11/07/02/moe-595954_960_720.png"
