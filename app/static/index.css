@@ -1,6 +1,75 @@
-img#logo2 {
-    margin: auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    display: block;
+#main-banner {
+    width: 100%;
+    height: 35vh;
+    background-image: url("bannerimage.jpg");
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
 }
+
+#flex-panels {
+    display: flex;
+}
+
+#about {
+    background-color: white;
+    height: 300px;
+    margin: 10px;
+}
+
+#about-caption {
+    font-size: 30px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: lighter;
+    display: block;
+    width: fit-content;
+    margin: auto;
+}
+
+#avatar {
+    display: block;
+    border-radius: 50%;
+    margin: auto;
+}
+
+#about p {
+    color: black;
+    width: 70%;
+    margin: auto;
+    line-height: 1.4em;
+    text-align: center;
+}
+
+#explore-button {
+    width: fit-content;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    font-size: 25px;
+    display: block;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: lighter;
+    margin: auto;
+    border-radius: 5px;
+    border: 0.5px solid black;
+    transition: opacity 0.5s;
+}
+
+#explore-button:hover {
+    opacity: 0.88;
+}
+
+:link {
+    text-decoration-line: none;
+    color: black;
+}
+
+#left-panel {
+    flex: 1;
+}
+
+#right-panel {
+    flex: 1;
+}
+

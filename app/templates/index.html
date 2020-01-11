@@ -1,13 +1,29 @@
 {% extends "base.html" %}
 {% block head %}
-    {{ super() }}
     <link rel="stylesheet" href={{ url_for('static', filename='index.css') }} type="text/css">
 {% endblock %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
-    <img id="logo2" src={{ url_for('static', filename='blog.png') }}  width="50px">
-    <span id="signin-span">Main Page</span>
-    <div id="nothing">
-        <span>There goes nothing!</span>
+    <div id="main-banner">
+        <a id="explore-button" href={{ url_for('articles_page', page=1) }}>Explore Articles!</a>
+    </div>
+    <div id="flex-panels">
+        <div id="left-panel">
+            <section id="about">
+                <span id="about-caption">About Myself:</span>
+                <img id="avatar" src={{ url_for('static', filename="avatar.jpg") }}>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dolor dui, dignissim vitae felis et, feugiat varius ante. Donec eleifend dui at neque sodales bibendum. Quisque id orci quis neque commodo vehicula quis ac ante. Etiam finibus vulputate finibus. Phasellus non dui purus. Cras et consectetur ipsum. Integer interdum, erat at consequat vehicula, ipsum lacus blandit mauris, a mollis tortor mi sit amet mi. Sed nec justo nulla. Nulla vel leo nisi. Praesent faucibus lorem sit amet diam volutpat sagittis. Aenean id ipsum leo. Quisque sodales volutpat lacus, at interdum augue aliquam sed. Integer rutrum et turpis id scelerisque. Nullam varius sapien eu volutpat euismod. Morbi in eleifend ligula.
+                </p>
+            </section>
+            <section id="support-me">
+
+            </section>
+        </div>
+        <div id="right-panel">
+            <section id="recent-posts">
+
+            </section>
+        </div>
     </div>
 {% endblock %}
