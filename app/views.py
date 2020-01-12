@@ -168,7 +168,9 @@ def change_avatar():
             flash("The image size is too big! Maximum: 2048x2048", 'error')
             return redirect('/settings')
         cropped_image = crop_image(img)
-        cropped_image.save(Path(__file__).parent.joinpath('static').joinpath(session['username']+'.jpg'))
+        cropped_image.save(Path(__file__).parent.joinpath('static').
+                           joinpath('avatars').
+                           joinpath(session['username']+'.jpg'))
         flash("Avatar Changed Successfully!", 'success')
         return redirect('/settings')
 

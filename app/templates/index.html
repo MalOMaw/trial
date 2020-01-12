@@ -27,7 +27,7 @@
                 {% for article in articles %}
                         <article>
                             <a target="_blank" href={{ url_for('view_article', article_id=article['id']) }}>
-                                <img class="avatar author-avatar" src={{ url_for('static', filename=article['author']+'.jpg') }} alt={{ article['author'] }}>
+                                <img class="avatar author-avatar" src={{ url_for('static', filename='avatars/'+article['author']+'.jpg') }} alt={{ article['author'] }}>
                                 <span class="article-name">{{ article['name'] }}</span>
                                 <div id="meta">
                                     <p id="post-info">

@@ -34,7 +34,7 @@
             <div class="dropdown">
                 {% if session["username"] %}
                      <div class="navavatar">
-                         <img class="avatar" src={{ url_for('static', filename='{0}.jpg'.format(session['username'])) }}>
+                         <img class="avatar" src={{ url_for('static', filename='avatars/'+'{0}.jpg'.format(session['username'])) }}>
                      </div>
                 {% endif %}
                 {% if not session["username"] %}
