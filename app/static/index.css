@@ -10,12 +10,26 @@
 
 #flex-panels {
     display: flex;
+    height: 100%;
 }
 
 #about {
     background-color: white;
-    height: 300px;
-    margin: 10px;
+    height: fit-content;
+    border: lightgrey solid 1px;
+    box-shadow: 0 0 5px #c2c2c2;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 20px;
+}
+
+#avatar {
+    display: block;
+    border-radius: 15%;
+    border: black solid 2px;
+    margin: 0;
+    margin-right: 10px;
+    float: left;
 }
 
 #about-caption {
@@ -25,21 +39,15 @@
     display: block;
     width: fit-content;
     margin: auto;
+    margin-bottom: 30px;
 }
 
-#avatar {
-    display: block;
-    border-radius: 50%;
-    margin: auto;
-}
-
-#about p {
+#about span {
     color: black;
-    width: 70%;
-    margin: auto;
     line-height: 1.4em;
-    text-align: center;
 }
+
+
 
 #explore-button {
     width: fit-content;
@@ -66,10 +74,18 @@
 }
 
 #left-panel {
-    flex: 1;
+    flex: 2;
 }
 
 #right-panel {
-    flex: 1;
+    flex: 3;
 }
 
+div.content {
+    min-height: 0;
+    height: fit-content;
+}
+
+#recent-posts {
+    height: fit-content;
+}

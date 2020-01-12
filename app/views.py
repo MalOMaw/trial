@@ -6,7 +6,23 @@ from app import app
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    from jinja2 import Markup
+    from .models import Article, User
+    from markdown import markdown
+    all_articles = Article.query.all()
+    selected_articles = all_articles[:3]
+    articles = list()
+    for article in selected_articles:
+        preview = r"https://cdn.pixabay.com/photo/2015/01/11/07/02/moe-595954_960_720.png"
+        content_preview = '\n'.join(article.content.splitlines()[:3])  # First 3 lines of article
+        if len(content_preview) > 200:
+            content_preview = content_preview[:200] + '...'
+        content_preview = markdown(content_preview)
+        user = User.query.filter(User.id == article.author_id).first()
+        articles.append(
+            {'date': article.datetime, 'author': user.username, 'name': article.name, 'preview_image': preview,
+             'preview_content': Markup(content_preview), 'id': article.id, 'comments_count': len(article.comments)})
+    return render_template("index.html", articles=articles)
 
 
 @app.route('/articles/page/<int:page>')
@@ -149,9 +165,10 @@ def change_avatar():
         image_data = request.files[form.newAvatar.name]
         img = Image.open(image_data)
         if img.width > 2048 or img.height > 2048:
-            flash("The image size is too big! Maximum: 1024x1024", 'error')
+            flash("The image size is too big! Maximum: 2048x2048", 'error')
+            return redirect('/settings')
         cropped_image = crop_image(img)
-        img.save(Path(__file__).parent.joinpath('static').joinpath(session['username']+'.jpg'))
+        cropped_image.save(Path(__file__).parent.joinpath('static').joinpath(session['username']+'.jpg'))
         flash("Avatar Changed Successfully!", 'success')
         return redirect('/settings')
 

@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block head %}
     <link rel="stylesheet" href={{ url_for('static', filename='index.css') }} type="text/css">
+    <link rel="stylesheet" href={{ url_for('static', filename='article.css') }} type="text/css">
+    <link rel="stylesheet" href={{ url_for('static', filename='articles.css') }} type="text/css">
 {% endblock %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
@@ -10,11 +12,11 @@
     <div id="flex-panels">
         <div id="left-panel">
             <section id="about">
-                <span id="about-caption">About Myself:</span>
+                <span id="about-caption">/WHOAMI/</span>
                 <img id="avatar" src={{ url_for('static', filename="avatar.jpg") }}>
-                <p>
+                <span>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dolor dui, dignissim vitae felis et, feugiat varius ante. Donec eleifend dui at neque sodales bibendum. Quisque id orci quis neque commodo vehicula quis ac ante. Etiam finibus vulputate finibus. Phasellus non dui purus. Cras et consectetur ipsum. Integer interdum, erat at consequat vehicula, ipsum lacus blandit mauris, a mollis tortor mi sit amet mi. Sed nec justo nulla. Nulla vel leo nisi. Praesent faucibus lorem sit amet diam volutpat sagittis. Aenean id ipsum leo. Quisque sodales volutpat lacus, at interdum augue aliquam sed. Integer rutrum et turpis id scelerisque. Nullam varius sapien eu volutpat euismod. Morbi in eleifend ligula.
-                </p>
+                </span>
             </section>
             <section id="support-me">
 
@@ -22,7 +24,34 @@
         </div>
         <div id="right-panel">
             <section id="recent-posts">
-
+                {% for article in articles %}
+                        <article>
+                            <a target="_blank" href={{ url_for('view_article', article_id=article['id']) }}>
+                                <img class="avatar author-avatar" src={{ url_for('static', filename=article['author']+'.jpg') }} alt={{ article['author'] }}>
+                                <span class="article-name">{{ article['name'] }}</span>
+                                <div id="meta">
+                                    <p id="post-info">
+                                        <span class="article-post-date">{{ article['author'] }} posted on {{ article['date'].strftime("%b %d %Y %H:%M") }}</span>
+                                    </p>
+                                </div>
+                                <!--
+                                <img src=" {{ article['preview_image'] }}">
+                                -->
+                                <div class="content-preview">
+                                    {{ article['preview_content'] }}
+                                </div>
+                                <a href={{ url_for('view_article', article_id=article['id'])}}>
+                                    <span class="read-more">
+                                        Read More...
+                                    </span>
+                                </a>
+                                <span class="comment-count">
+                                    <i class="fas fa-comments"></i>
+                                    {{ article['comments_count'] }}
+                                </span>
+                            </a>
+                        </article>
+                    {% endfor %}
             </section>
         </div>
     </div>
