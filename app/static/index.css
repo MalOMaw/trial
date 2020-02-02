@@ -1,16 +1,11 @@
 #main-banner {
     width: 100%;
-    height: 35vh;
+    height: 20vh;
     background-image: url("bannerimage.jpg");
     display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: column;
-}
-
-#flex-panels {
-    display: flex;
-    height: 100%;
 }
 
 #about {
@@ -30,6 +25,7 @@
     margin: 0;
     margin-right: 10px;
     float: left;
+    width: 15ch;
 }
 
 #about-caption {
@@ -73,13 +69,10 @@
     color: black;
 }
 
-#left-panel {
-    flex: 2;
+#left-panel, #right-panel {
+    margin: 0 20px;
 }
 
-#right-panel {
-    flex: 3;
-}
 
 div.content {
     min-height: 0;
@@ -87,5 +80,86 @@ div.content {
 }
 
 #recent-posts {
+    max-width: 80vw;
+}
+
+article {
+    margin: 0;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: fit-content;
+}
+
+#about {
+    margin: 0;
+    margin-top: 20px;
+    max-width: 80vw;
+    width: fit-content;
     height: fit-content;
 }
+
+#flex-panels {
+    display: flex;
+    height: 100%;
+}
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    #flex-panels {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+    #flex-panels {
+        flex-direction: row;
+        justify-content: center;
+    }
+    #about {
+        max-width: 30%;
+    }
+}
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    #flex-panels {
+        flex-direction: row;
+    }
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    #flex-panels {
+        flex-direction: row;
+    }
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+    #flex-panels {
+        flex-direction: row;
+    }
+}
+
